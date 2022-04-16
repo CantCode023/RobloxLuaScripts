@@ -812,7 +812,7 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         Toggle,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}}
+                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                     ):Play()
                     TweenService:Create(
                         FrameToggle1,
@@ -2255,3 +2255,5 @@ function lib:Window(text, preset, closebind)
     return tabhold
 end
 return lib
+
+-- asdasd
