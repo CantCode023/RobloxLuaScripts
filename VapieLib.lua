@@ -686,7 +686,7 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         Toggle,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = Color3.fromRGB(34,34,34)}
+                        {BackgroundColor3 = BackgroundPresetColor}
                     ):Play()
                     TweenService:Create(
                         FrameToggle1,
@@ -706,7 +706,7 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         FrameToggleCircle,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = Color3.fromRGB(50,50,50)}
+                        {BackgroundColor3 = BackgroundPresetColor}
                     ):Play()
                     FrameToggleCircle:TweenPosition(UDim2.new(0.127000004, 0, 0.222000003, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
                 end
