@@ -687,11 +687,8 @@ function lib:Window(text, preset, closebind)
             FrameToggle3.Parent = FrameToggle1
             FrameToggle3.BackgroundTransparency = 1.000
             FrameToggle3.Size = UDim2.new(0, 37, 0, 18)
-            spawn(function()
-                while wait() do
-                    FrameToggle3.BackgroundColor3 = PresetColor
-                end
-            end)
+            FrameToggle3.BackgroundColor3 = PresetColor
+            FrameToggle3.BackgroundTransparency = 1
 
             FrameToggle3Corner.Name = "FrameToggle3Corner"
             FrameToggle3Corner.Parent = FrameToggle3
@@ -759,7 +756,7 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         FrameToggle3,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundTransparency = 0}
+                        {BackgroundTransparency = 1}
                     ):Play()
                     TweenService:Create(
                         FrameToggleCircle,
@@ -1962,15 +1959,14 @@ function lib:Window(text, preset, closebind)
             TextboxFrameCorner.Parent = TextboxFrame
 
             TextBox.Parent = TextboxFrame
-            TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             TextBox.BackgroundTransparency = 1.000
             TextBox.Size = UDim2.new(0, 200, 0, 23)
             TextBox.Font = Enum.Font.GothamBlack
             TextBox.Text = ""
+            TextBox.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
             spawn(function()
                 while wait() do
                     TextBox.TextColor3 = PresetTextColor
-                    TextBox.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
                 end
             end)
             TextBox.TextScaled = true
@@ -2160,5 +2156,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.1.5")
+print("Version: 1.1.6")
 return lib
