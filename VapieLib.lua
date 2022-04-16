@@ -1532,7 +1532,7 @@ function lib:Window(text, preset, closebind)
             end)
             FrameRainbowToggle1.Position = UDim2.new(0.649999976, 0, 0.186000004, 0)
             FrameRainbowToggle1.Size = UDim2.new(0, 37, 0, 18)
-            FrameRainbowToggle1.BackgroundTransparency = 1
+            FrameRainbowToggle1.BackgroundTransparency = 0
 
             FrameRainbowToggle1Corner.Name = "FrameRainbowToggle1Corner"
             FrameRainbowToggle1Corner.Parent = FrameRainbowToggle1
@@ -2156,5 +2156,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.1.7")
+print("Version: 1.1.8")
 return lib
