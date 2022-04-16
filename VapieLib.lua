@@ -784,6 +784,7 @@ function lib:Window(text, preset, closebind)
             
             
             local function move(input)
+                print(input.Position.X)
                 local pos =
                     UDim2.new(
                         math.clamp((input.Position.X - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
