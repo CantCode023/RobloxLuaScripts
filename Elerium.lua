@@ -1214,7 +1214,7 @@ function library:AddWindow(title, options)
 						local toggled = false
 						switch.MouseButton1Click:Connect(function()
 							toggled = not toggled
-							switch.Text = toggled and "✓"
+							switch.Text = toggled and utf8.char(10003) or ""
 							pcall(callback, toggled)
 						end)
 
