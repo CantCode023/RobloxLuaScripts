@@ -30,7 +30,7 @@ local themeColor = {
         ["BackgroundPreset"] = Color3.fromRGB(50, 50, 50),
         ["TextColor"] = Color3.fromRGB(255, 255, 255),
         ["TabColor"] = Color3.fromRGB(255,255,255),
-        ["SecondaryColor"] = Color3.fromRGB(50,50,50)
+        ["SecondaryColor"] = Color3.fromRGB(120,120,120)
     },
     ["Sakura"] = {
         ["PresetColor"] = Color3.fromRGB(255, 124, 231),
@@ -2156,5 +2156,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.1.6")
+print("Version: 1.1.7")
 return lib
