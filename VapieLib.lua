@@ -864,13 +864,13 @@ function lib:Window(text, preset, closebind)
                 SliderValue.FocusLost:Connect(function()
                     local realValue = SliderValue.Text
                     local posdf = UDim2.new(
-                        math.clamp((realValue + 550 - min) / (max - min), 0, 1),
+                        math.clamp((realValue + 550 - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
                         0,
                         0,
                         3
                     )
                     local posdf1 = UDim2.new(
-                        math.clamp((realValue + 550 - min) / (max - min), 0, 1),
+                        math.clamp((realValue + 550 - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
                         -6,
                         -1.30499995,
                         0
