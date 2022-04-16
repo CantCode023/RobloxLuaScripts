@@ -806,6 +806,13 @@ function lib:Window(text, preset, closebind)
             
             
             local function move(input)
+                -- local a = {
+                --     ["0"] = 514,
+                --     ["1"] = 552,
+                --     ["2"] = 556,
+
+                --     ["16"] = 604
+                -- }
                 print(input.Position.X)
                 local pos =
                     UDim2.new(
@@ -826,8 +833,26 @@ function lib:Window(text, preset, closebind)
                 SlideCircle:TweenPosition(pos, "Out", "Sine", 0.1, true)
                 local value = math.floor(((pos.X.Scale * max) / max) * (max - min) + min)
                 SliderValue.Text = tostring(value)
+                SliderValue.FocusLost:Connect(function()
+                    local realValue = ((pos.X.Scale * max) / max) * (max - min) + min
+                    local pos = UDim2.new(
+                        math.clamp((realValue + 550 - min) / (max - min), 0, 1),
+                        0,
+                        0,
+                        3
+                    )
+                    local pos1 = UDim2.new(
+                        math.clamp((realValue + 550 - min) / (max - min), 0, 1),
+                        -6,
+                        -1.30499995,
+                        0
+                    )
+                    CurrentValueFrame:TweenSize(pos1, "Out", "Sine", 0.1, true)
+                    SlideCircle:TweenPosition(pos, "Out", "Sine", 0.1, true)
+                end)
                 pcall(callback, value)
             end
+
 
             SlideCircle.InputBegan:Connect(
                 function(input)
