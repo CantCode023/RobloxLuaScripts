@@ -221,6 +221,9 @@ Tab.BackgroundTransparency = 1
 Tab.Size = UDim2.new(1, 0, 1, 0)
 Tab.Visible = false
 Tab.AutomaticCanvasSize = Enum.AutomaticSize.Y
+Tab.CanvasSize = UDim2.new(0, 0, 0, 0)
+Tab.BorderSizePixel = 0
+Tab.ScrollBarThickness = 0
 
 UIListLayout_2.Parent = Tab
 UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
@@ -390,7 +393,7 @@ TabButton.BackgroundColor3 = Color3.new(0.160784, 0.290196, 0.478431)
 TabButton.BackgroundTransparency = 1
 TabButton.BorderSizePixel = 0
 TabButton.Position = UDim2.new(0.185185179, 0, 0, 0)
-TabButton.Size = UDim2.new(0, 71, 0, 20)
+TabButton.Size = UDim2.new(0, 71, 0, 25)
 TabButton.ZIndex = 2
 TabButton.Font = Enum.Font.GothamSemibold
 TabButton.Text = "Test tab"
@@ -1103,7 +1106,7 @@ function library:AddWindow(title, options)
 				local new_button = Prefabs:FindFirstChild("TabButton"):Clone()
 				new_button.Parent = tab_buttons
 				new_button.Text = tab_name
-				new_button.Size = UDim2.new(0, gNameLen(new_button), 0, 20)
+				new_button.Size = UDim2.new(0, gNameLen(new_button), 0, 25)
 				new_button.ZIndex = new_button.ZIndex + (windows * 10)
 				new_button:GetChildren()[1].ZIndex = new_button:GetChildren()[1].ZIndex + (windows * 10)
 
@@ -2014,4 +2017,4 @@ function library:AddWindow(title, options)
 
 	return window_data, Window
 end
-return library -- Please work TwT
+return library
