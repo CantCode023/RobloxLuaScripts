@@ -670,11 +670,6 @@ function lib:Window(text, preset, closebind)
 
             FrameToggle1.Name = "FrameToggle1"
             FrameToggle1.Parent = Toggle
-            spawn(function()
-                while wait() do
-                    FrameToggle1.BackgroundColor3 = themeColor[currentTheme]["BackgroundPreset"]
-                end
-            end)
             FrameToggle1.Position = UDim2.new(0.859504104, 0, 0.285714298, 0)
             FrameToggle1.Size = UDim2.new(0, 37, 0, 18)
 
@@ -683,11 +678,6 @@ function lib:Window(text, preset, closebind)
 
             FrameToggle2.Name = "FrameToggle2"
             FrameToggle2.Parent = FrameToggle1
-            spawn(function()
-                while wait() do
-                    FrameToggle2.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
-                end
-            end)
             FrameToggle2.Position = UDim2.new(0.0489999987, 0, 0.0930000022, 0)
             FrameToggle2.Size = UDim2.new(0, 33, 0, 14)
 
@@ -696,11 +686,6 @@ function lib:Window(text, preset, closebind)
 
             FrameToggle3.Name = "FrameToggle3"
             FrameToggle3.Parent = FrameToggle1
-            spawn(function()
-                while wait() do
-                    FrameToggle3.BackgroundColor3 = PresetColor
-                end
-            end)
             FrameToggle3.BackgroundTransparency = 1.000
             FrameToggle3.Size = UDim2.new(0, 37, 0, 18)
 
@@ -912,14 +897,14 @@ function lib:Window(text, preset, closebind)
                         local realValue = tonumber(SliderValue.Text)
                         local posdf =
                             UDim2.new(
-                                math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/(SlideFrame.AbsoluteSize.X*3.3)), 0, 1),
+                                math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X)-0.5, 0, 1),
                                 -6,
                                 -1.30499995,
                                 0
                             )
                         local pos1df =
                             UDim2.new(
-                                math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/(SlideFrame.AbsoluteSize.X*3.3)), 0, 1),
+                                math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X)-0.5, 0, 1),
                                 0,
                                 0,
                                 3
@@ -2177,6 +2162,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
+print("Version: 1.0.6")
 return lib
-
--- Version 1.0.4
