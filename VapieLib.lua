@@ -5,7 +5,7 @@ local RunService = game:GetService("RunService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local PresetColor = Color3.fromRGB(44, 120, 224)
-local BackgroundPresetColor = BackgroundPresetColor
+local BackgroundPresetColor = Color3.fromRGB(34, 34, 34)
 local CloseBind = Enum.KeyCode.RightControl
 
 coroutine.wrap(
