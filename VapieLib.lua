@@ -419,7 +419,8 @@ function lib:Window(text, preset, closebind)
         TabBtn.Text = ""
         spawn(function()
             while wait() do
-                TabBtn.TextColor3 = TabColor or themeColor[currentTheme]["TabColor"]
+                print(themeColor[currentTheme]["TabColor"])
+                TabBtn.TextColor3 = themeColor[currentTheme]["TabColor"]
             end
         end)
         TabBtn.TextSize = 14.000
@@ -696,7 +697,7 @@ function lib:Window(text, preset, closebind)
             FrameToggleCircle.Parent = FrameToggle1
             spawn(function()
                 while wait() do
-                    FrameToggleCircle.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+                    FrameToggleCircle.BackgroundColor3 = Color3.fromRGB(255,255,255)
                 end
             end)
             FrameToggleCircle.Position = UDim2.new(0.127000004, 0, 0.222000003, 0)
@@ -897,14 +898,15 @@ function lib:Window(text, preset, closebind)
                         local realValue = tonumber(SliderValue.Text)
                         local posdf =
                             UDim2.new(
-                                math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X)-0.5, 0, 1),
+                                math.clamp(realValue/100, 0, 1),
                                 -6,
                                 -1.30499995,
                                 0
                             )
                         local pos1df =
                             UDim2.new(
-                                math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X)-0.5, 0, 1),
+                                -- math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X)-0.5, 0, 1),
+                                math.clamp(realValue/100, 0, 1),
                                 0,
                                 0,
                                 3
@@ -941,27 +943,6 @@ function lib:Window(text, preset, closebind)
                 SlideCircle:TweenPosition(pos, "Out", "Sine", 0.1, true)
                 local value = math.floor(((pos.X.Scale * max) / max) * (max - min) + min)
                 SliderValue.Text = tostring(value)
-                SliderValue.Changed:Connect(function()
-                    local realValue = tonumber(SliderValue.Text)
-                    -- math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X) ,0, 1)
-                    local posdf =
-                        UDim2.new(
-                            math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
-                            -6,
-                            -1.30499995,
-                            0
-                        )
-                    local pos1df =
-                        UDim2.new(
-                            math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
-                            0,
-                            0,
-                            3
-                        )
-                    print(realValue, pos1df, posdf)
-                    CurrentValueFrame:TweenSize(pos1df, "Out", "Sine", 0.1, true)
-                    SlideCircle:TweenPosition(posdf, "Out", "Sine", 0.1, true)
-                end)
                 -- local posdf =
                 --     UDim2.new(
                 --         math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
@@ -2162,5 +2143,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.0.6")
+print("Version: 1.0.7")
 return lib
