@@ -182,7 +182,6 @@ function lib:Window(text, preset, closebind)
 
 	function lib:ChangeUiKeybind(key)
 		CloseBind = key
-        print(CloseBind)
 	end
     
     function lib:ChangePresetColor(toch)
@@ -801,6 +800,7 @@ function lib:Window(text, preset, closebind)
                         -1.30499995,
                         0
                     )
+                print(pos)
                 local pos1 =
                     UDim2.new(
                         math.clamp((input.Position.X - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
