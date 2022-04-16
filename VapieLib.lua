@@ -252,7 +252,13 @@ function lib:Window(text, preset, closebind)
 
         OkayBtn.Name = "OkayBtn"
         OkayBtn.Parent = NotificationFrame
-        OkayBtn.BackgroundColor3 = BackgroundPresetColor
+        
+        spawn(function()
+            while wait() do
+                OkayBtn.BackgroundColor3 = BackgroundPresetColor
+            end
+        end)
+
         OkayBtn.Position = UDim2.new(0.0609756112, 0, 0.720207274, 0)
         OkayBtn.Size = UDim2.new(0, 144, 0, 42)
         OkayBtn.AutoButtonColor = false
@@ -441,7 +447,11 @@ function lib:Window(text, preset, closebind)
 
             Button.Name = "Button"
             Button.Parent = Tab
-            Button.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    Button.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             Button.Size = UDim2.new(0, 363, 0, 42)
             Button.AutoButtonColor = false
             Button.Font = Enum.Font.SourceSans
@@ -494,7 +504,13 @@ function lib:Window(text, preset, closebind)
 
             Button.Name = "Button"
             Button.Parent = Tab
-            Button.BackgroundColor3 = BackgroundPresetColor
+            
+            spawn(function()
+                while wait() do
+                    Button.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
+
             Button.Size = UDim2.new(0, 363, 0, 42)
             Button.AutoButtonColor = false
             Button.Font = Enum.Font.SourceSans
@@ -558,7 +574,11 @@ function lib:Window(text, preset, closebind)
 
             Toggle.Name = "Toggle"
             Toggle.Parent = Tab
-            Toggle.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    Toggle.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             Toggle.Position = UDim2.new(0.215625003, 0, 0.446271926, 0)
             Toggle.Size = UDim2.new(0, 363, 0, 42)
             Toggle.AutoButtonColor = false
@@ -594,7 +614,11 @@ function lib:Window(text, preset, closebind)
 
             FrameToggle2.Name = "FrameToggle2"
             FrameToggle2.Parent = FrameToggle1
-            FrameToggle2.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    FrameToggle2.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             FrameToggle2.Position = UDim2.new(0.0489999987, 0, 0.0930000022, 0)
             FrameToggle2.Size = UDim2.new(0, 33, 0, 14)
 
@@ -734,7 +758,11 @@ function lib:Window(text, preset, closebind)
 
             Slider.Name = "Slider"
             Slider.Parent = Tab
-            Slider.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    Slider.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             Slider.Position = UDim2.new(-0.48035714, 0, -0.570532918, 0)
             Slider.Size = UDim2.new(0, 363, 0, 60)
             Slider.AutoButtonColor = false
@@ -892,7 +920,11 @@ function lib:Window(text, preset, closebind)
 
             Dropdown.Name = "Dropdown"
             Dropdown.Parent = Tab
-            Dropdown.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    Dropdown.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             Dropdown.ClipsDescendants = true
             Dropdown.Position = UDim2.new(-0.541071415, 0, -0.532915354, 0)
             Dropdown.Size = UDim2.new(0, 363, 0, 42)
@@ -981,7 +1013,11 @@ function lib:Window(text, preset, closebind)
 
                 Item.Name = "Item"
                 Item.Parent = DropItemHolder
-                Item.BackgroundColor3 = BackgroundPresetColor
+                spawn(function()
+                    while wait() do
+                        Item.BackgroundColor3 = BackgroundPresetColor
+                    end
+                end)
                 Item.ClipsDescendants = true
                 Item.Size = UDim2.new(0, 335, 0, 25)
                 Item.AutoButtonColor = false
@@ -1040,7 +1076,11 @@ function lib:Window(text, preset, closebind)
     
                     Item.Name = "Item"
                     Item.Parent = DropItemHolder
-                    Item.BackgroundColor3 = BackgroundPresetColor
+                    spawn(function()
+                        while wait() do
+                            Item.BackgroundColor3 = BackgroundPresetColor
+                        end
+                    end)
                     Item.ClipsDescendants = true
                     Item.Size = UDim2.new(0, 335, 0, 25)
                     Item.AutoButtonColor = false
