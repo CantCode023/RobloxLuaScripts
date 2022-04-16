@@ -912,14 +912,14 @@ function lib:Window(text, preset, closebind)
                         local realValue = tonumber(SliderValue.Text)
                         local posdf =
                             UDim2.new(
-                                math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
+                                math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/(SlideFrame.AbsoluteSize.X*3.3)), 0, 1),
                                 -6,
                                 -1.30499995,
                                 0
                             )
                         local pos1df =
                             UDim2.new(
-                                math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
+                                math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/(SlideFrame.AbsoluteSize.X*3.3)), 0, 1),
                                 0,
                                 0,
                                 3
@@ -2179,4 +2179,4 @@ function lib:Window(text, preset, closebind)
 end
 return lib
 
--- Version 1.0.3
+-- Version 1.0.4
