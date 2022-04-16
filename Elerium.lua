@@ -5,11 +5,6 @@ local ui_options = {
 	can_resize = true,
 }
 
-do
-	local imgui = game:GetService("CoreGui"):FindFirstChild("imgui")
-	if imgui then imgui:Destroy() end
-end
-
 local imgui = Instance.new("ScreenGui")
 local Prefabs = Instance.new("Frame")
 local Label = Instance.new("TextLabel")
@@ -957,6 +952,7 @@ function library:AddWindow(title, options)
 	Window:FindFirstChild("Title").Text = title
 	Window.Size = UDim2.new(0, options.min_size.X, 0, options.min_size.Y)
 	Window.ZIndex = Window.ZIndex + (windows * 10)
+	Window.Name = title
 
 	do -- Altering Window Color
 		local Title = Window:FindFirstChild("Title")
@@ -1097,6 +1093,14 @@ function library:AddWindow(title, options)
 		local tab_selection = Window:FindFirstChild("TabSelection")
 		local tab_buttons = tab_selection:FindFirstChild("TabButtons")
 
+		do
+			function window_data:DestroyClone()
+				if game:GetService("CoreGui"):FindFirstChild(title) then
+					game:GetService("CoreGui"):FindFirstChild(title):Destroy()
+				end
+			end
+		end
+
 		do -- Add Tab
 			function window_data:AddTab(tab_name)
 				local tab_data = {}
@@ -1210,7 +1214,25 @@ function library:AddWindow(title, options)
 						local toggled = false
 						switch.MouseButton1Click:Connect(function()
 							toggled = not toggled
-							switch.Text = toggled and utf8.char(10003) or ""
+							local frame = Instance.new("Frame", switch)
+							spawn(function()
+								while true do
+									if frame then
+										frame.Name = "ToggleBackFrame"
+										frame.BackgroundColor3 = options.main_color
+										Switch.BackgroundTransparency = 1
+										Switch.BorderSizePixel = 0
+										Switch.Position = UDim2.new(0.229411766, 0, 0.20714286, 0)
+										Switch.Size = UDim2.new(0, 20, 0, 20)
+										Switch.ZIndex = 2
+										Switch.Font = Enum.Font.SourceSans
+										Switch.Text = ""
+										Switch.TextColor3 = Color3.new(1, 1, 1)
+										Switch.TextSize = 18
+									end
+									RS.Heartbeat:Wait()
+								end
+							end)
 							pcall(callback, toggled)
 						end)
 
@@ -1434,6 +1456,7 @@ function library:AddWindow(title, options)
 						local objects = box:FindFirstChild("Objects")
 						local indicator = dropdown:FindFirstChild("Indicator")
 						dropdown.ZIndex = dropdown.ZIndex + (windows * 10)
+						dropdown.Size = UDim2.new(1,0,0,20)
 						box.ZIndex = box.ZIndex + (windows * 10)
 						objects.ZIndex = objects.ZIndex + (windows * 10)
 						indicator.ZIndex = indicator.ZIndex + (windows * 10)
@@ -2017,4 +2040,4 @@ function library:AddWindow(title, options)
 
 	return window_data, Window
 end
-return library
+return library -- Please work TwT
