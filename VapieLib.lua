@@ -928,7 +928,7 @@ function lib:Window(text, preset, closebind)
 
             SlideFrame.Name = "SlideFrame"
             SlideFrame.Parent = Slider
-            SlideFrame.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"])
+            SlideFrame.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
             SlideFrame.BorderSizePixel = 0
             SlideFrame.Position = UDim2.new(0.0342647657, 0, 0.686091602, 0)
             SlideFrame.Size = UDim2.new(0, 335, 0, 3)
@@ -1648,7 +1648,7 @@ function lib:Window(text, preset, closebind)
 
             FrameRainbowToggleCircle.Name = "FrameRainbowToggleCircle"
             FrameRainbowToggleCircle.Parent = FrameRainbowToggle1
-            FrameRainbowToggleCircle.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"])
+            FrameRainbowToggleCircle.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
             FrameRainbowToggleCircle.Position = UDim2.new(0.127000004, 0, 0.222000003, 0)
             FrameRainbowToggleCircle.Size = UDim2.new(0, 10, 0, 10)
 
