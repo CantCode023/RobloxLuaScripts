@@ -387,22 +387,6 @@ function lib:Window(text, preset, closebind)
         NotificationDesc.TextXAlignment = Enum.TextXAlignment.Left
         NotificationDesc.TextYAlignment = Enum.TextYAlignment.Top
         
-        OkayBtn.MouseEnter:Connect(function()
-            TweenService:Create(
-                OkayBtn,
-                TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-            ):Play()
-        end)
-
-        OkayBtn.MouseLeave:Connect(function()
-            TweenService:Create(
-                OkayBtn,
-                TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-            ):Play()
-        end)
-        
         OkayBtn.MouseButton1Click:Connect(function()
             NotificationFrame:TweenSize(UDim2.new(0, 0,0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .6, true)
         
@@ -573,22 +557,6 @@ function lib:Window(text, preset, closebind)
             ButtonTitle.TextSize = 14.000
             ButtonTitle.TextXAlignment = Enum.TextXAlignment.Left
             
-            Button.MouseEnter:Connect(function()
-                TweenService:Create(
-                    Button,
-                    TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                ):Play()
-            end)
-            
-            Button.MouseLeave:Connect(function()
-                TweenService:Create(
-                    Button,
-                    TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                ):Play()
-            end)
-            
             Button.MouseButton1Click:Connect(function()
                 pcall(callback)
             end)
@@ -639,22 +607,6 @@ function lib:Window(text, preset, closebind)
             end)
             ButtonTitle.TextSize = 14.000
             ButtonTitle.TextXAlignment = Enum.TextXAlignment.Left
-            
-            Button.MouseEnter:Connect(function()
-                TweenService:Create(
-                    Button,
-                    TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                ):Play()
-            end)
-            
-            Button.MouseLeave:Connect(function()
-                TweenService:Create(
-                    Button,
-                    TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                ):Play()
-            end)
             
             Button.MouseButton1Click:Connect(function()
                 game.CoreGui[text]:Destroy()
@@ -776,17 +728,9 @@ function lib:Window(text, preset, closebind)
                     end
                 end
             )()
-        
-            
-            
             
             Toggle.MouseButton1Click:Connect(function()
                 if toggled == false then
-                    TweenService:Create(
-                        Toggle,
-                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                    ):Play()
                     TweenService:Create(
                         FrameToggle1,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
@@ -809,11 +753,6 @@ function lib:Window(text, preset, closebind)
                     ):Play()
                     FrameToggleCircle:TweenPosition(UDim2.new(0.587, 0, 0.222000003, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
                 else
-                    TweenService:Create(
-                        Toggle,
-                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                    ):Play()
                     TweenService:Create(
                         FrameToggle1,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
@@ -841,11 +780,6 @@ function lib:Window(text, preset, closebind)
             end)
             
             if default == true then
-                TweenService:Create(
-                    Toggle,
-                    TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                ):Play()
                 TweenService:Create(
                     FrameToggle1,
                     TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
@@ -1004,13 +938,13 @@ function lib:Window(text, preset, closebind)
                 SliderValue.FocusLost:Connect(function()
                     local realValue = tonumber(SliderValue.Text)
                     local pos1df = UDim2.new(
-                        math.clamp((realValue*3.3 + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1,
+                        math.clamp(((realValue*3.3 + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
                         0,
                         0,
                         3
                     )
                     local posdf = UDim2.new(
-                        math.clamp((realValue*3.3 + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1,
+                        math.clamp(((realValue*3.3 + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
                         -6,
                         -1.30499995,
                         0
@@ -1183,22 +1117,6 @@ function lib:Window(text, preset, closebind)
                 ItemCorner.Name = "ItemCorner"
                 ItemCorner.Parent = Item
                 
-                Item.MouseEnter:Connect(function()
-                    TweenService:Create(
-                        Item,
-                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                    ):Play()
-                end)
-                
-                Item.MouseLeave:Connect(function()
-                    TweenService:Create(
-                        Item,
-                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                    ):Play()
-                end)
-                
                 Item.MouseButton1Click:Connect(function()
                     droptog = not droptog
                     DropdownTitle.Text = text .. " - " .. v
@@ -1249,22 +1167,6 @@ function lib:Window(text, preset, closebind)
                     ItemCorner.CornerRadius = UDim.new(0, 4)
                     ItemCorner.Name = "ItemCorner"
                     ItemCorner.Parent = Item
-                    
-                    Item.MouseEnter:Connect(function()
-                        TweenService:Create(
-                            Item,
-                            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                        ):Play()
-                    end)
-                    
-                    Item.MouseLeave:Connect(function()
-                        TweenService:Create(
-                            Item,
-                            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                        ):Play()
-                    end)
                     
                     Item.MouseButton1Click:Connect(function()
                         droptog = not droptog
@@ -1417,26 +1319,9 @@ function lib:Window(text, preset, closebind)
                     end
                 end)
                 Item.TextSize = 15.000
-
                 ItemCorner.CornerRadius = UDim.new(0, 4)
                 ItemCorner.Name = "ItemCorner"
                 ItemCorner.Parent = Item
-                
-                Item.MouseEnter:Connect(function()
-                    TweenService:Create(
-                        Item,
-                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                    ):Play()
-                end)
-                
-                Item.MouseLeave:Connect(function()
-                    TweenService:Create(
-                        Item,
-                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                    ):Play()
-                end)
 
                 Item.MouseButton1Click:Connect(function()
                     droptog = not droptog
@@ -2256,4 +2141,4 @@ function lib:Window(text, preset, closebind)
 end
 return lib
 
--- asdasd
+-- Version 1.0.0
