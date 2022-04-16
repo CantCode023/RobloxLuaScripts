@@ -25,7 +25,7 @@ local TabSelection = Instance.new("ImageLabel")
 local TabButtons = Instance.new("Frame")
 local UIListLayout = Instance.new("UIListLayout")
 local Frame = Instance.new("Frame")
-local Tab = Instance.new("Frame")
+local Tab = Instance.new("ScrollingFrame")
 local UIListLayout_2 = Instance.new("UIListLayout")
 local TextBox = Instance.new("TextBox")
 local TextBox_Roundify_4px = Instance.new("ImageLabel")
@@ -220,6 +220,7 @@ Tab.BackgroundColor3 = Color3.new(1, 1, 1)
 Tab.BackgroundTransparency = 1
 Tab.Size = UDim2.new(1, 0, 1, 0)
 Tab.Visible = false
+Tab.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
 UIListLayout_2.Parent = Tab
 UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
@@ -1851,7 +1852,7 @@ function library:AddWindow(title, options)
 
 									sf.CanvasSize = UDim2.new(0, 0, lin * 0.153846154, 0)
 								end
-                                
+
 								if type == "Text" then
 									Source.Text = Source.Text:gsub("\13", "")
 									Source.Text = Source.Text:gsub("\t", "      ")
