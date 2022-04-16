@@ -20,6 +20,7 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local PresetColor = Color3.fromRGB(44, 120, 224)
 local BackgroundPresetColor = Color3.fromRGB(34, 34, 34)
+local PresetTextColor = Color3.fromRGB(255, 255, 255)
 local CloseBind = Enum.KeyCode.RightControl
 
 coroutine.wrap(
@@ -209,6 +210,10 @@ function lib:Window(text, preset, closebind)
     function lib:ChangeBackgroundPresetColor(toch)
         BackgroundPresetColor = Color3.fromRGB(toch.R * 255, toch.G * 255, toch.B * 255)
     end
+
+    function lib:ChangePresetTextColor(toch)
+        PresetTextColor = Color3.fromRGB(toch.R * 255, toch.G * 255, toch.B * 255)
+    end
     
     function lib:Notification(texttitle,textdesc,textbtn)
 
@@ -230,7 +235,7 @@ function lib:Window(text, preset, closebind)
         NotificationHold.AutoButtonColor = false
         NotificationHold.Font = Enum.Font.SourceSans
         NotificationHold.Text = ""
-        NotificationHold.TextColor3 = Color3.fromRGB(0, 0, 0)
+        NotificationHold.TextColor3 = PresetTextColor
         NotificationHold.TextSize = 14.000
         
         TweenService:Create(
@@ -264,7 +269,7 @@ function lib:Window(text, preset, closebind)
         OkayBtn.AutoButtonColor = false
         OkayBtn.Font = Enum.Font.SourceSans
         OkayBtn.Text = ""
-        OkayBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+        OkayBtn.TextColor3 = PresetTextColor
         OkayBtn.TextSize = 14.000
 
         OkayBtnCorner.CornerRadius = UDim.new(0, 5)
@@ -279,7 +284,7 @@ function lib:Window(text, preset, closebind)
         OkayBtnTitle.Size = UDim2.new(0, 181, 0, 42)
         OkayBtnTitle.Font = Enum.Font.Gotham
         OkayBtnTitle.Text = textbtn
-        OkayBtnTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        OkayBtnTitle.TextColor3 = PresetTextColor
         OkayBtnTitle.TextSize = 14.000
         OkayBtnTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -291,7 +296,7 @@ function lib:Window(text, preset, closebind)
         NotificationTitle.Size = UDim2.new(0, 143, 0, 26)
         NotificationTitle.Font = Enum.Font.Gotham
         NotificationTitle.Text = texttitle
-        NotificationTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        NotificationTitle.TextColor3 = PresetTextColor
         NotificationTitle.TextSize = 18.000
         NotificationTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -303,7 +308,7 @@ function lib:Window(text, preset, closebind)
         NotificationDesc.Size = UDim2.new(0, 143, 0, 91)
         NotificationDesc.Font = Enum.Font.Gotham
         NotificationDesc.Text = textdesc
-        NotificationDesc.TextColor3 = Color3.fromRGB(255, 255, 255)
+        NotificationDesc.TextColor3 = PresetTextColor
         NotificationDesc.TextSize = 15.000
         NotificationDesc.TextWrapped = true
         NotificationDesc.TextXAlignment = Enum.TextXAlignment.Left
@@ -355,7 +360,7 @@ function lib:Window(text, preset, closebind)
         TabBtn.Size = UDim2.new(0, 107, 0, 21)
         TabBtn.Font = Enum.Font.SourceSans
         TabBtn.Text = ""
-        TabBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+        TabBtn.TextColor3 = PresetTextColor
         TabBtn.TextSize = 14.000
 
         TabTitle.Name = "TabTitle"
@@ -365,7 +370,7 @@ function lib:Window(text, preset, closebind)
         TabTitle.Size = UDim2.new(0, 107, 0, 21)
         TabTitle.Font = Enum.Font.Gotham
         TabTitle.Text = nama
-        TabTitle.TextColor3 = Color3.fromRGB(150, 150, 150)
+        TabTitle.TextColor3 = PresetTextColor
         TabTitle.TextSize = 14.000
         TabTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -411,7 +416,7 @@ function lib:Window(text, preset, closebind)
         if fs == false then
             fs = true
             TabBtnIndicator.Size = UDim2.new(0, 13, 0, 2)
-            TabTitle.TextColor3 = Color3.fromRGB(255,255,255)
+            TabTitle.TextColor3 = PresetTextColor
             Tab.Visible = true
         end
         
@@ -429,12 +434,12 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         v.TabTitle,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {TextColor3 = Color3.fromRGB(150,150,150)}
+                        {TextColor3 = PresetTextColor}
                     ):Play()
                     TweenService:Create(
                         TabTitle,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {TextColor3 = Color3.fromRGB(255,255,255)}
+                        {TextColor3 = PresetTextColor}
                     ):Play()
                 end
             end
@@ -456,7 +461,7 @@ function lib:Window(text, preset, closebind)
             Button.AutoButtonColor = false
             Button.Font = Enum.Font.SourceSans
             Button.Text = ""
-            Button.TextColor3 = Color3.fromRGB(0, 0, 0)
+            Button.TextColor3 = PresetTextColor
             Button.TextSize = 14.000
 
             ButtonCorner.CornerRadius = UDim.new(0, 5)
@@ -471,7 +476,7 @@ function lib:Window(text, preset, closebind)
             ButtonTitle.Size = UDim2.new(0, 187, 0, 42)
             ButtonTitle.Font = Enum.Font.Gotham
             ButtonTitle.Text = text
-            ButtonTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ButtonTitle.TextColor3 = PresetTextColor
             ButtonTitle.TextSize = 14.000
             ButtonTitle.TextXAlignment = Enum.TextXAlignment.Left
             
@@ -515,7 +520,7 @@ function lib:Window(text, preset, closebind)
             Button.AutoButtonColor = false
             Button.Font = Enum.Font.SourceSans
             Button.Text = ""
-            Button.TextColor3 = Color3.fromRGB(0, 0, 0)
+            Button.TextColor3 = PresetTextColor
             Button.TextSize = 14.000
 
             ButtonCorner.CornerRadius = UDim.new(0, 5)
@@ -530,7 +535,7 @@ function lib:Window(text, preset, closebind)
             ButtonTitle.Size = UDim2.new(0, 187, 0, 42)
             ButtonTitle.Font = Enum.Font.Gotham
             ButtonTitle.Text = "Destroy Gui"
-            ButtonTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ButtonTitle.TextColor3 = PresetTextColor
             ButtonTitle.TextSize = 14.000
             ButtonTitle.TextXAlignment = Enum.TextXAlignment.Left
             
@@ -584,7 +589,7 @@ function lib:Window(text, preset, closebind)
             Toggle.AutoButtonColor = false
             Toggle.Font = Enum.Font.SourceSans
             Toggle.Text = ""
-            Toggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+            Toggle.TextColor3 = PresetTextColor
             Toggle.TextSize = 14.000
 
             ToggleCorner.CornerRadius = UDim.new(0, 5)
@@ -599,7 +604,7 @@ function lib:Window(text, preset, closebind)
             ToggleTitle.Size = UDim2.new(0, 187, 0, 42)
             ToggleTitle.Font = Enum.Font.Gotham
             ToggleTitle.Text = text
-            ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ToggleTitle.TextColor3 = PresetTextColor
             ToggleTitle.TextSize = 14.000
             ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -768,7 +773,7 @@ function lib:Window(text, preset, closebind)
             Slider.AutoButtonColor = false
             Slider.Font = Enum.Font.SourceSans
             Slider.Text = ""
-            Slider.TextColor3 = Color3.fromRGB(0, 0, 0)
+            Slider.TextColor3 = PresetTextColor
             Slider.TextSize = 14.000
 
             SliderCorner.CornerRadius = UDim.new(0, 5)
@@ -783,7 +788,7 @@ function lib:Window(text, preset, closebind)
             SliderTitle.Size = UDim2.new(0, 187, 0, 42)
             SliderTitle.Font = Enum.Font.Gotham
             SliderTitle.Text = text
-            SliderTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            SliderTitle.TextColor3 = PresetTextColor
             SliderTitle.TextSize = 14.000
             SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -795,7 +800,7 @@ function lib:Window(text, preset, closebind)
             SliderValue.Size = UDim2.new(0, 335, 0, 42)
             SliderValue.Font = Enum.Font.Gotham
             SliderValue.Text = tostring(start and math.floor((start / max) * (max - min) + min) or 0)
-            SliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+            SliderValue.TextColor3 = PresetTextColor
             SliderValue.TextSize = 14.000
             SliderValue.TextXAlignment = Enum.TextXAlignment.Right
             SliderValue.BorderSizePixel = 0
@@ -873,6 +878,7 @@ function lib:Window(text, preset, closebind)
                         -1.30499995,
                         0
                     )
+                    print(posdf, posdf1)
                     CurrentValueFrame:TweenSize(posdf1, "Out", "Sine", 0.1, true)
                     SlideCircle:TweenPosition(posdf, "Out", "Sine", 0.1, true)
                 end)
@@ -938,7 +944,7 @@ function lib:Window(text, preset, closebind)
             DropdownBtn.Size = UDim2.new(0, 363, 0, 42)
             DropdownBtn.Font = Enum.Font.SourceSans
             DropdownBtn.Text = ""
-            DropdownBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+            DropdownBtn.TextColor3 = PresetTextColor
             DropdownBtn.TextSize = 14.000
 
             DropdownTitle.Name = "DropdownTitle"
@@ -949,7 +955,7 @@ function lib:Window(text, preset, closebind)
             DropdownTitle.Size = UDim2.new(0, 187, 0, 42)
             DropdownTitle.Font = Enum.Font.Gotham
             DropdownTitle.Text = text
-            DropdownTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownTitle.TextColor3 = PresetTextColor
             DropdownTitle.TextSize = 14.000
             DropdownTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1021,7 +1027,7 @@ function lib:Window(text, preset, closebind)
                 Item.AutoButtonColor = false
                 Item.Font = Enum.Font.Gotham
                 Item.Text = v
-                Item.TextColor3 = Color3.fromRGB(255, 255, 255)
+                Item.TextColor3 = PresetTextColor
                 Item.TextSize = 15.000
 
                 ItemCorner.CornerRadius = UDim.new(0, 4)
@@ -1084,7 +1090,7 @@ function lib:Window(text, preset, closebind)
                     Item.AutoButtonColor = false
                     Item.Font = Enum.Font.Gotham
                     Item.Text = v
-                    Item.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    Item.TextColor3 = PresetTextColor
                     Item.TextSize = 15.000
     
                     ItemCorner.CornerRadius = UDim.new(0, 4)
@@ -1190,7 +1196,7 @@ function lib:Window(text, preset, closebind)
             ColorpickerTitle.Size = UDim2.new(0, 187, 0, 42)
             ColorpickerTitle.Font = Enum.Font.Gotham
             ColorpickerTitle.Text = text
-            ColorpickerTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ColorpickerTitle.TextColor3 = PresetTextColor
             ColorpickerTitle.TextSize = 14.000
             ColorpickerTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1216,7 +1222,7 @@ function lib:Window(text, preset, closebind)
             ConfirmBtn.AutoButtonColor = false
             ConfirmBtn.Font = Enum.Font.SourceSans
             ConfirmBtn.Text = ""
-            ConfirmBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+            ConfirmBtn.TextColor3 = PresetTextColor
             ConfirmBtn.TextSize = 14.000
 
             ConfirmBtnCorner.CornerRadius = UDim.new(0, 5)
@@ -1230,7 +1236,7 @@ function lib:Window(text, preset, closebind)
             ConfirmBtnTitle.Size = UDim2.new(0, 33, 0, 32)
             ConfirmBtnTitle.Font = Enum.Font.Gotham
             ConfirmBtnTitle.Text = "Confirm"
-            ConfirmBtnTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ConfirmBtnTitle.TextColor3 = PresetTextColor
             ConfirmBtnTitle.TextSize = 14.000
             ConfirmBtnTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1241,7 +1247,7 @@ function lib:Window(text, preset, closebind)
             ColorpickerBtn.Size = UDim2.new(0, 363, 0, 42)
             ColorpickerBtn.Font = Enum.Font.SourceSans
             ColorpickerBtn.Text = ""
-            ColorpickerBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+            ColorpickerBtn.TextColor3 = PresetTextColor
             ColorpickerBtn.TextSize = 14.000
 
             RainbowToggle.Name = "RainbowToggle"
@@ -1256,7 +1262,7 @@ function lib:Window(text, preset, closebind)
             RainbowToggle.AutoButtonColor = false
             RainbowToggle.Font = Enum.Font.SourceSans
             RainbowToggle.Text = ""
-            RainbowToggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+            RainbowToggle.TextColor3 = PresetTextColor
             RainbowToggle.TextSize = 14.000
 
             RainbowToggleCorner.CornerRadius = UDim.new(0, 5)
@@ -1270,7 +1276,7 @@ function lib:Window(text, preset, closebind)
             RainbowToggleTitle.Size = UDim2.new(0, 33, 0, 32)
             RainbowToggleTitle.Font = Enum.Font.Gotham
             RainbowToggleTitle.Text = "Rainbow"
-            RainbowToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            RainbowToggleTitle.TextColor3 = PresetTextColor
             RainbowToggleTitle.TextSize = 14.000
             RainbowToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1614,7 +1620,7 @@ function lib:Window(text, preset, closebind)
             Label.AutoButtonColor = false
             Label.Font = Enum.Font.SourceSans
             Label.Text = ""
-            Label.TextColor3 = Color3.fromRGB(0, 0, 0)
+            Label.TextColor3 = PresetTextColor
             Label.TextSize = 14.000
             Label.TextScaled = textscaled
 
@@ -1631,7 +1637,7 @@ function lib:Window(text, preset, closebind)
             LabelTitle.Font = Enum.Font.Gotham
             LabelTitle.Text = text
             LabelTitle.TextScaled = textscaled
-            LabelTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            LabelTitle.TextColor3 = PresetTextColor
             LabelTitle.TextSize = 14.000
             LabelTitle.TextXAlignment = Enum.TextXAlignment.Left
             
@@ -1668,7 +1674,7 @@ function lib:Window(text, preset, closebind)
             TextboxTitle.Size = UDim2.new(0, 187, 0, 42)
             TextboxTitle.Font = Enum.Font.Gotham
             TextboxTitle.Text = text
-            TextboxTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextboxTitle.TextColor3 = PresetTextColor
             TextboxTitle.TextSize = 14.000
             TextboxTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1688,7 +1694,7 @@ function lib:Window(text, preset, closebind)
             TextBox.Size = UDim2.new(0, 200, 0, 23)
             TextBox.Font = Enum.Font.GothamBlack
             TextBox.Text = ""
-            TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextBox.TextColor3 = PresetTextColor
             TextBox.TextScaled = true
             TextBox.ClearTextOnFocus = false
             
@@ -1725,7 +1731,7 @@ function lib:Window(text, preset, closebind)
             Bind.AutoButtonColor = false
             Bind.Font = Enum.Font.SourceSans
             Bind.Text = ""
-            Bind.TextColor3 = Color3.fromRGB(0, 0, 0)
+            Bind.TextColor3 = PresetTextColor
             Bind.TextSize = 14.000
 
             BindCorner.CornerRadius = UDim.new(0, 5)
@@ -1740,7 +1746,7 @@ function lib:Window(text, preset, closebind)
             BindTitle.Size = UDim2.new(0, 187, 0, 42)
             BindTitle.Font = Enum.Font.Gotham
             BindTitle.Text = text
-            BindTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            BindTitle.TextColor3 = PresetTextColor
             BindTitle.TextSize = 14.000
             BindTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1752,7 +1758,7 @@ function lib:Window(text, preset, closebind)
             BindText.Size = UDim2.new(0, 337, 0, 42)
             BindText.Font = Enum.Font.Gotham
             BindText.Text = Key
-            BindText.TextColor3 = Color3.fromRGB(255, 255, 255)
+            BindText.TextColor3 = PresetTextColor
             BindText.TextSize = 14.000
             BindText.TextXAlignment = Enum.TextXAlignment.Right
             
@@ -1801,7 +1807,7 @@ function lib:Window(text, preset, closebind)
             Bind.AutoButtonColor = false
             Bind.Font = Enum.Font.SourceSans
             Bind.Text = ""
-            Bind.TextColor3 = Color3.fromRGB(0, 0, 0)
+            Bind.TextColor3 = PresetTextColor
             Bind.TextSize = 14.000
 
             BindCorner.CornerRadius = UDim.new(0, 5)
@@ -1816,7 +1822,7 @@ function lib:Window(text, preset, closebind)
             BindTitle.Size = UDim2.new(0, 187, 0, 42)
             BindTitle.Font = Enum.Font.Gotham
             BindTitle.Text = "Change Ui Keybind"
-            BindTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            BindTitle.TextColor3 = PresetTextColor
             BindTitle.TextSize = 14.000
             BindTitle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1828,7 +1834,7 @@ function lib:Window(text, preset, closebind)
             BindText.Size = UDim2.new(0, 337, 0, 42)
             BindText.Font = Enum.Font.Gotham
             BindText.Text = Key
-            BindText.TextColor3 = Color3.fromRGB(255, 255, 255)
+            BindText.TextColor3 = PresetTextColor
             BindText.TextSize = 14.000
             BindText.TextXAlignment = Enum.TextXAlignment.Right
             
