@@ -1568,7 +1568,7 @@ function lib:Window(text, preset, closebind)
             FrameToggle3.Parent = FrameRainbowToggle3
             spawn(function()
                 while wait() do
-                    FrameToggle3.BackgroundColor3 = PresetColor
+                    FrameRainbowToggle3.BackgroundColor3 = PresetColor
                 end
             end)
 
@@ -2160,5 +2160,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.1.4")
+print("Version: 1.1.5")
 return lib
