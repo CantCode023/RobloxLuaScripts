@@ -672,7 +672,7 @@ function lib:Window(text, preset, closebind)
             FrameToggle1.Parent = Toggle
             spawn(function()
                 while wait() do
-                    FrameToggle1.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+                    FrameToggle1.BackgroundColor3 = themeColor[currentTheme]["BackgroundPreset"]
                 end
             end)
             FrameToggle1.Position = UDim2.new(0.859504104, 0, 0.285714298, 0)
@@ -934,7 +934,29 @@ function lib:Window(text, preset, closebind)
                 SlideCircle:TweenPosition(pos, "Out", "Sine", 0.1, true)
                 local value = math.floor(((pos.X.Scale * max) / max) * (max - min) + min)
                 SliderValue.Text = tostring(value)
+                SliderValue.Changed:Connect(function()
+                    local realValue = tonumber(SliderValue.Text)
+                    -- math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X) ,0, 1)
+                    local posdf =
+                        UDim2.new(
+                            math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
+                            -6,
+                            -1.30499995,
+                            0
+                        )
+                    local pos1df =
+                        UDim2.new(
+                            math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
+                            0,
+                            0,
+                            3
+                        )
+                    print(realValue, pos1df, posdf)
+                    CurrentValueFrame:TweenSize(pos1df, "Out", "Sine", 0.1, true)
+                    SlideCircle:TweenPosition(posdf, "Out", "Sine", 0.1, true)
+                end)
                 SliderValue.FocusLost:Connect(function()
+                    print("Focus Lost!")
                     local realValue = tonumber(SliderValue.Text)
                     -- math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X) ,0, 1)
                     local posdf =
@@ -2143,4 +2165,4 @@ function lib:Window(text, preset, closebind)
 end
 return lib
 
--- Version 1.0.1
+-- Version 1.0.2
