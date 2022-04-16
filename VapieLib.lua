@@ -21,7 +21,6 @@ local Mouse = LocalPlayer:GetMouse()
 local PresetColor = Color3.fromRGB(44, 120, 224)
 local BackgroundPresetColor = Color3.fromRGB(34, 34, 34)
 local PresetTextColor = Color3.fromRGB(255, 255, 255)
-local TabColor = Color3.fromRGB(255,255,255)
 local Themes = {"Default", "Sakura", "Dark Sakura", "Honey", "Synapse X", "Custom"}
 local currentTheme = "Default"
 local themeColor = {
@@ -690,7 +689,7 @@ function lib:Window(text, preset, closebind)
             FrameToggle3.Size = UDim2.new(0, 37, 0, 18)
             spawn(function()
                 while wait() do
-                    FrameToggle3.BackgroundColor3 = BackgroundPresetColor
+                    FrameToggle3.BackgroundColor3 = PresetColor
                 end
             end)
 
@@ -1345,7 +1344,6 @@ function lib:Window(text, preset, closebind)
                         PresetColor = themeColor[v]["PresetColor"]
                         PresetTextColor = themeColor[v]["TextColor"]
                         BackgroundPresetColor = themeColor[v]["BackgroundPreset"]
-                        TabColor = themeColor[v]["TabColor"]
                     end, v)
                     Dropdown:TweenSize(UDim2.new(0, 363, 0, 42), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
                     TweenService:Create(
@@ -1537,12 +1535,14 @@ function lib:Window(text, preset, closebind)
             end)
             FrameRainbowToggle1.Position = UDim2.new(0.649999976, 0, 0.186000004, 0)
             FrameRainbowToggle1.Size = UDim2.new(0, 37, 0, 18)
+            FrameRainbowToggle1.BackgroundTransparency = 1
 
             FrameRainbowToggle1Corner.Name = "FrameRainbowToggle1Corner"
             FrameRainbowToggle1Corner.Parent = FrameRainbowToggle1
 
             FrameRainbowToggle2.Name = "FrameRainbowToggle2"
             FrameRainbowToggle2.Parent = FrameRainbowToggle1
+            FrameRainbowToggle2.BackgroundTransparency = 1
             spawn(function()
                 while wait() do
                     FrameRainbowToggle2.BackgroundColor3 = BackgroundPresetColor
@@ -1558,7 +1558,7 @@ function lib:Window(text, preset, closebind)
             FrameRainbowToggle3.Parent = FrameRainbowToggle1
             spawn(function()
                 while wait() do
-                    FrameRainbowToggle3.BackgroundColor3 = BackgroundPresetColor
+                    FrameRainbowToggle3.BackgroundColor3 = PresetColor
                 end
             end)
             FrameRainbowToggle3.BackgroundTransparency = 1.000
@@ -1566,11 +1566,18 @@ function lib:Window(text, preset, closebind)
 
             FrameToggle3.Name = "FrameToggle3"
             FrameToggle3.Parent = FrameRainbowToggle3
+            spawn(function()
+                while wait() do
+                    FrameToggle3.BackgroundColor3 = PresetColor
+                end
+            end)
 
             FrameRainbowToggleCircle.Name = "FrameRainbowToggleCircle"
             FrameRainbowToggleCircle.Parent = FrameRainbowToggle1
             spawn(function()
-                FrameRainbowToggleCircle.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+                while wait() do
+                    FrameRainbowToggleCircle.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+                end
             end)
             FrameRainbowToggleCircle.Position = UDim2.new(0.127000004, 0, 0.222000003, 0)
             FrameRainbowToggleCircle.Size = UDim2.new(0, 10, 0, 10)
@@ -1963,6 +1970,7 @@ function lib:Window(text, preset, closebind)
             spawn(function()
                 while wait() do
                     TextBox.TextColor3 = PresetTextColor
+                    TextBox.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
                 end
             end)
             TextBox.TextScaled = true
@@ -2152,5 +2160,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.1.2")
+print("Version: 1.1.4")
 return lib
