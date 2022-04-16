@@ -841,7 +841,6 @@ function lib:Window(text, preset, closebind)
 
                 --     ["16"] = 604
                 -- }
-                print(input.Position.X)
                 local pos =
                     UDim2.new(
                         math.clamp((input.Position.X - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
@@ -849,7 +848,6 @@ function lib:Window(text, preset, closebind)
                         -1.30499995,
                         0
                     )
-                print(pos)
                 local pos1 =
                     UDim2.new(
                         math.clamp((input.Position.X - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
@@ -864,13 +862,13 @@ function lib:Window(text, preset, closebind)
                 SliderValue.FocusLost:Connect(function()
                     local realValue = SliderValue.Text
                     local posdf = UDim2.new(
-                        math.clamp((realValue + 550 - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
+                        math.clamp(((tonumber(realValue) + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
                         0,
                         0,
                         3
                     )
                     local posdf1 = UDim2.new(
-                        math.clamp((realValue + 550 - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
+                        math.clamp(((tonumber(realValue) + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
                         -6,
                         -1.30499995,
                         0
@@ -1171,7 +1169,11 @@ function lib:Window(text, preset, closebind)
 
             Colorpicker.Name = "Colorpicker"
             Colorpicker.Parent = Tab
-            Colorpicker.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    Colorpicker.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             Colorpicker.ClipsDescendants = true
             Colorpicker.Position = UDim2.new(-0.541071415, 0, -0.532915354, 0)
             Colorpicker.Size = UDim2.new(0, 363, 0, 42)
@@ -1204,7 +1206,11 @@ function lib:Window(text, preset, closebind)
 
             ConfirmBtn.Name = "ConfirmBtn"
             ConfirmBtn.Parent = ColorpickerTitle
-            ConfirmBtn.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    ConfirmBtn.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             ConfirmBtn.Position = UDim2.new(1.25814295, 0, 1.09037197, 0)
             ConfirmBtn.Size = UDim2.new(0, 105, 0, 32)
             ConfirmBtn.AutoButtonColor = false
@@ -1240,7 +1246,11 @@ function lib:Window(text, preset, closebind)
 
             RainbowToggle.Name = "RainbowToggle"
             RainbowToggle.Parent = ColorpickerTitle
-            RainbowToggle.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    RainbowToggle.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             RainbowToggle.Position = UDim2.new(1.26349044, 0, 2.12684202, 0)
             RainbowToggle.Size = UDim2.new(0, 104, 0, 32)
             RainbowToggle.AutoButtonColor = false
@@ -1275,7 +1285,11 @@ function lib:Window(text, preset, closebind)
 
             FrameRainbowToggle2.Name = "FrameRainbowToggle2"
             FrameRainbowToggle2.Parent = FrameRainbowToggle1
-            FrameRainbowToggle2.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    FrameRainbowToggle2.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             FrameRainbowToggle2.Position = UDim2.new(0.0590000004, 0, 0.112999998, 0)
             FrameRainbowToggle2.Size = UDim2.new(0, 33, 0, 14)
 
@@ -1284,7 +1298,11 @@ function lib:Window(text, preset, closebind)
 
             FrameRainbowToggle3.Name = "FrameRainbowToggle3"
             FrameRainbowToggle3.Parent = FrameRainbowToggle1
-            FrameRainbowToggle3.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    FrameRainbowToggle3.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             FrameRainbowToggle3.BackgroundTransparency = 1.000
             FrameRainbowToggle3.Size = UDim2.new(0, 37, 0, 18)
 
@@ -1587,7 +1605,11 @@ function lib:Window(text, preset, closebind)
 
             Label.Name = "Button"
             Label.Parent = Tab
-            Label.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    Label.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             Label.Size = UDim2.new(0, 363, 0, 42)
             Label.AutoButtonColor = false
             Label.Font = Enum.Font.SourceSans
@@ -1625,7 +1647,11 @@ function lib:Window(text, preset, closebind)
 
             Textbox.Name = "Textbox"
             Textbox.Parent = Tab
-            Textbox.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    Textbox.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             Textbox.ClipsDescendants = true
             Textbox.Position = UDim2.new(-0.541071415, 0, -0.532915354, 0)
             Textbox.Size = UDim2.new(0, 363, 0, 42)
@@ -1690,7 +1716,11 @@ function lib:Window(text, preset, closebind)
 
             Bind.Name = "Bind"
             Bind.Parent = Tab
-            Bind.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    Bind.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             Bind.Size = UDim2.new(0, 363, 0, 42)
             Bind.AutoButtonColor = false
             Bind.Font = Enum.Font.SourceSans
@@ -1762,7 +1792,11 @@ function lib:Window(text, preset, closebind)
 
             Bind.Name = "Bind"
             Bind.Parent = Tab
-            Bind.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    Bind.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
             Bind.Size = UDim2.new(0, 363, 0, 42)
             Bind.AutoButtonColor = false
             Bind.Font = Enum.Font.SourceSans
