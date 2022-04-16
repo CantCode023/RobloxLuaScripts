@@ -419,7 +419,7 @@ function lib:Window(text, preset, closebind)
         TabBtn.Text = ""
         spawn(function()
             while wait() do
-                print(themeColor[currentTheme]["TabColor"])
+                print(currentTheme)
                 TabBtn.TextColor3 = themeColor[currentTheme]["TabColor"]
             end
         end)
@@ -717,6 +717,11 @@ function lib:Window(text, preset, closebind)
             Toggle.MouseButton1Click:Connect(function()
                 if toggled == false then
                     TweenService:Create(
+                        FrameToggle3,
+                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+                        {BackgroundColor3 = PresetColor}
+                    ):Play()
+                    TweenService:Create(
                         FrameToggle1,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
                         {BackgroundTransparency = 1}
@@ -739,6 +744,11 @@ function lib:Window(text, preset, closebind)
                     FrameToggleCircle:TweenPosition(UDim2.new(0.587, 0, 0.222000003, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
                 else
                     TweenService:Create(
+                        FrameToggle3,
+                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
+                    ):Play()
+                    TweenService:Create(
                         FrameToggle1,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
                         {BackgroundTransparency = 0}
@@ -756,7 +766,7 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         FrameToggleCircle,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
+                        {BackgroundColor3 = Color3.fromRGB(255,255,255)}
                     ):Play()
                     FrameToggleCircle:TweenPosition(UDim2.new(0.127000004, 0, 0.222000003, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
                 end
@@ -1330,6 +1340,7 @@ function lib:Window(text, preset, closebind)
                 Item.MouseButton1Click:Connect(function()
                     droptog = not droptog
                     DropdownTitle.Text = text .. " - " .. v
+                    print(v)
                     currentTheme = v
                     pcall(function()
                         Main.BackgroundColor3 = themeColor[v]["BackgroundColor"]
@@ -2143,5 +2154,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.0.7")
+print("Version: 1.0.9")
 return lib
