@@ -21,6 +21,39 @@ local Mouse = LocalPlayer:GetMouse()
 local PresetColor = Color3.fromRGB(44, 120, 224)
 local BackgroundPresetColor = Color3.fromRGB(34, 34, 34)
 local PresetTextColor = Color3.fromRGB(255, 255, 255)
+local Themes = {"Default", "Sakura", "Dark Sakura", "Honey", "Synapse X", "Custom"}
+local themeColor = {
+    ["Default"] = {
+        ["PresetColor"] = Color3.fromRGB(44, 120, 224),
+        ["BackgroundColor"] = Color3.fromRGB(30, 30, 30),
+        ["BackgroundPreset"] = Color3.fromRGB(50, 50, 50),
+        ["TextColor"] = Color3.fromRGB(255, 255, 255)
+    },
+    ["Sakura"] = {
+        ["PresetColor"] = Color3.fromRGB(255, 124, 231),
+        ["BackgroundColor"] = Color3.fromRGB(239, 239, 239),
+        ["BackgroundPreset"] = Color3.fromRGB(255, 150, 212),
+        ["TextColor"] = Color3.fromRGB(255, 124, 231)
+    },
+    ["Dark Sakura"] = {
+        ["PresetColor"] = Color3.fromRGB(255, 124, 231),
+        ["BackgroundColor"] = Color3.fromRGB(32, 32, 32),
+        ["BackgroundPreset"] = Color3.fromRGB(165, 82, 132),
+        ["TextColor"] = Color3.fromRGB(255, 124, 231)
+    },
+    ["Honey"] = {
+        ["PresetColor"] = Color3.fromRGB(255, 219, 143),
+        ["BackgroundColor"] = Color3.fromRGB(63, 53, 35),
+        ["BackgroundPreset"] = Color3.fromRGB(159, 121, 43),
+        ["TextColor"] = Color3.fromRGB(255, 219, 143)
+    },
+    ["Synapse X"] = {
+        ["PresetColor"] = Color3.fromRGB(255, 154, 0),
+        ["BackgroundColor"] = Color3.fromRGB(48, 48, 48),
+        ["BackgroundPreset"] = Color3.fromRGB(68, 68, 68),
+        ["TextColor"] = Color3.fromRGB(255, 154, 0)
+    }
+}
 local CloseBind = Enum.KeyCode.RightControl
 
 coroutine.wrap(
@@ -213,6 +246,13 @@ function lib:Window(text, preset, closebind)
 
     function lib:ChangePresetTextColor(toch)
         PresetTextColor = Color3.fromRGB(toch.R * 255, toch.G * 255, toch.B * 255)
+    end
+
+    function lib:ChangeTheme(theme)
+        Main.BackgroundColor3 = themeColor[theme]["BackgroundColor"]
+        PresetColor = themeColor[theme]["PresetColor"]
+        PresetTextColor = themeColor[theme]["TextColor"]
+        BackgroundPresetColor = themeColor[theme]["BackgroundPreset"]
     end
     
     function lib:Notification(texttitle,textdesc,textbtn)
@@ -866,19 +906,18 @@ function lib:Window(text, preset, closebind)
                 SliderValue.Text = tostring(value)
                 SliderValue.FocusLost:Connect(function()
                     local realValue = SliderValue.Text
-                    local posdf = UDim2.new(
+                    local posdf1 = UDim2.new(
                         math.clamp(((tonumber(realValue) + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
                         0,
                         0,
                         3
                     )
-                    local posdf1 = UDim2.new(
+                    local posdf = UDim2.new(
                         math.clamp(((tonumber(realValue) + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
                         -6,
                         -1.30499995,
                         0
                     )
-                    print(posdf, posdf1)
                     CurrentValueFrame:TweenSize(posdf1, "Out", "Sine", 0.1, true)
                     SlideCircle:TweenPosition(posdf, "Out", "Sine", 0.1, true)
                 end)
@@ -1131,6 +1170,170 @@ function lib:Window(text, preset, closebind)
                 end
             end
             return dropholder
+        end
+        function tabcontent:ChangeTheme()
+            local droptog = false
+            local framesize = 0
+            local itemcount = 0
+            
+            local Dropdown = Instance.new("Frame")
+            local DropdownCorner = Instance.new("UICorner")
+            local DropdownBtn = Instance.new("TextButton")
+            local DropdownTitle = Instance.new("TextLabel")
+            local ArrowImg = Instance.new("ImageLabel")
+            local DropItemHolder = Instance.new("ScrollingFrame")
+            local DropLayout = Instance.new("UIListLayout")
+
+            Dropdown.Name = "Dropdown"
+            Dropdown.Parent = Tab
+            spawn(function()
+                while wait() do
+                    Dropdown.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
+            Dropdown.ClipsDescendants = true
+            Dropdown.Position = UDim2.new(-0.541071415, 0, -0.532915354, 0)
+            Dropdown.Size = UDim2.new(0, 363, 0, 42)
+
+            DropdownCorner.CornerRadius = UDim.new(0, 5)
+            DropdownCorner.Name = "DropdownCorner"
+            DropdownCorner.Parent = Dropdown
+
+            DropdownBtn.Name = "DropdownBtn"
+            DropdownBtn.Parent = Dropdown
+            DropdownBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownBtn.BackgroundTransparency = 1.000
+            DropdownBtn.Size = UDim2.new(0, 363, 0, 42)
+            DropdownBtn.Font = Enum.Font.SourceSans
+            DropdownBtn.Text = ""
+            DropdownBtn.TextColor3 = PresetTextColor
+            DropdownBtn.TextSize = 14.000
+
+            DropdownTitle.Name = "DropdownTitle"
+            DropdownTitle.Parent = Dropdown
+            DropdownTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownTitle.BackgroundTransparency = 1.000
+            DropdownTitle.Position = UDim2.new(0.0358126722, 0, 0, 0)
+            DropdownTitle.Size = UDim2.new(0, 187, 0, 42)
+            DropdownTitle.Font = Enum.Font.Gotham
+            DropdownTitle.Text = "Change Theme"
+            DropdownTitle.TextColor3 = PresetTextColor
+            DropdownTitle.TextSize = 14.000
+            DropdownTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+            ArrowImg.Name = "ArrowImg"
+            ArrowImg.Parent = DropdownTitle
+            ArrowImg.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ArrowImg.BackgroundTransparency = 1.000
+            ArrowImg.Position = UDim2.new(1.65240645, 0, 0.190476194, 0)
+            ArrowImg.Size = UDim2.new(0, 26, 0, 26)
+            ArrowImg.Image = "http://www.roblox.com/asset/?id=6034818375"
+
+            DropItemHolder.Name = "DropItemHolder"
+            DropItemHolder.Parent = DropdownTitle
+            DropItemHolder.Active = true
+            DropItemHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            DropItemHolder.BackgroundTransparency = 1.000
+            DropItemHolder.BorderSizePixel = 0
+            DropItemHolder.Position = UDim2.new(-0.00400000019, 0, 1.04999995, 0)
+            DropItemHolder.Size = UDim2.new(0, 342, 0, 0)
+            DropItemHolder.CanvasSize = UDim2.new(0, 0, 0, 0)
+            DropItemHolder.ScrollBarThickness = 3
+
+            DropLayout.Name = "DropLayout"
+            DropLayout.Parent = DropItemHolder
+            DropLayout.SortOrder = Enum.SortOrder.LayoutOrder
+            
+            DropdownBtn.MouseButton1Click:Connect(function()
+                if droptog == false then
+                    Dropdown:TweenSize(UDim2.new(0, 363, 0, 55 + framesize), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
+                    TweenService:Create(
+                        ArrowImg,
+                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+                        {Rotation = 270}
+                    ):Play()
+                    wait(.2)
+                    Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
+                    droptog = not droptog
+                else
+                    Dropdown:TweenSize(UDim2.new(0, 363, 0, 42), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
+                    TweenService:Create(
+                        ArrowImg,
+                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+                        {Rotation = 0}
+                    ):Play()
+                    wait(.2)
+                    Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
+                    droptog = not droptog
+                end
+            end)
+            
+            for i,v in next, Themes do
+                itemcount = itemcount + 1
+                if itemcount <= 3 then
+                    framesize = framesize + 26
+                    DropItemHolder.Size = UDim2.new(0, 342, 0, framesize)
+                end
+                local Item = Instance.new("TextButton")
+                local ItemCorner = Instance.new("UICorner")
+
+                Item.Name = "Item"
+                Item.Parent = DropItemHolder
+                spawn(function()
+                    while wait() do
+                        Item.BackgroundColor3 = BackgroundPresetColor
+                    end
+                end)
+                Item.ClipsDescendants = true
+                Item.Size = UDim2.new(0, 335, 0, 25)
+                Item.AutoButtonColor = false
+                Item.Font = Enum.Font.Gotham
+                Item.Text = v
+                Item.TextColor3 = PresetTextColor
+                Item.TextSize = 15.000
+
+                ItemCorner.CornerRadius = UDim.new(0, 4)
+                ItemCorner.Name = "ItemCorner"
+                ItemCorner.Parent = Item
+                
+                Item.MouseEnter:Connect(function()
+                    TweenService:Create(
+                        Item,
+                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+                        {BackgroundColor3 = BackgroundPresetColor}
+                    ):Play()
+                end)
+                
+                Item.MouseLeave:Connect(function()
+                    TweenService:Create(
+                        Item,
+                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+                        {BackgroundColor3 = BackgroundPresetColor}
+                    ):Play()
+                end)
+
+                Item.MouseButton1Click:Connect(function()
+                    droptog = not droptog
+                    DropdownTitle.Text = text .. " - " .. v
+                    pcall(function()
+                        Main.BackgroundColor3 = themeColor[v]["BackgroundColor"]
+                        PresetColor = themeColor[v]["PresetColor"]
+                        PresetTextColor = themeColor[v]["TextColor"]
+                        BackgroundPresetColor = themeColor[v]["BackgroundPreset"]
+                    end, v)
+                    Dropdown:TweenSize(UDim2.new(0, 363, 0, 42), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
+                    TweenService:Create(
+                        ArrowImg,
+                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+                        {Rotation = 0}
+                    ):Play()
+                    wait(.2)
+                    Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
+                end)
+                
+                DropItemHolder.CanvasSize = UDim2.new(0, 0, 0, DropLayout.AbsoluteContentSize.Y)
+            end
+            Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
         end
         function tabcontent:Colorpicker(text, preset, callback)
             local ColorPickerToggled = false
