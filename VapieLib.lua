@@ -21,6 +21,7 @@ local Mouse = LocalPlayer:GetMouse()
 local PresetColor = Color3.fromRGB(44, 120, 224)
 local BackgroundPresetColor = Color3.fromRGB(34, 34, 34)
 local PresetTextColor = Color3.fromRGB(255, 255, 255)
+local TabColor = Color3.fromRGB(255,255,255)
 local Themes = {"Default", "Sakura", "Dark Sakura", "Honey", "Synapse X", "Custom"}
 local currentTheme = ""
 local themeColor = {
@@ -29,32 +30,48 @@ local themeColor = {
         ["BackgroundColor"] = Color3.fromRGB(30, 30, 30),
         ["BackgroundPreset"] = Color3.fromRGB(50, 50, 50),
         ["TextColor"] = Color3.fromRGB(255, 255, 255),
+        ["TabColor"] = Color3.fromRGB(255,255,255),
         ["SecondaryColor"] = Color3.fromRGB(50,50,50)
     },
     ["Sakura"] = {
         ["PresetColor"] = Color3.fromRGB(255, 124, 231),
         ["BackgroundColor"] = Color3.fromRGB(239, 239, 239),
         ["BackgroundPreset"] = Color3.fromRGB(255, 150, 212),
-        ["TextColor"] = Color3.fromRGB(255, 255, 255),
+        ["TextColor"] = Color3.fromRGB(255,255,255),
+        ["TabColor"] = Color3.fromRGB(255, 124, 231),
         ["SecondaryColor"] = Color3.fromRGB(255, 255, 255)
     },
     ["Dark Sakura"] = {
         ["PresetColor"] = Color3.fromRGB(255, 124, 231),
         ["BackgroundColor"] = Color3.fromRGB(32, 32, 32),
         ["BackgroundPreset"] = Color3.fromRGB(165, 82, 132),
-        ["TextColor"] = Color3.fromRGB(255, 255, 255)
+        ["TextColor"] = Color3.fromRGB(255, 255, 255),
+        ["TabColor"] = Color3.fromRGB(255,255,255),
+        ["SecondaryColor"] = Color3.fromRGB(255, 255, 255)
     },
     ["Honey"] = {
         ["PresetColor"] = Color3.fromRGB(255, 219, 143),
         ["BackgroundColor"] = Color3.fromRGB(63, 53, 35),
         ["BackgroundPreset"] = Color3.fromRGB(159, 121, 43),
-        ["TextColor"] = Color3.fromRGB(255, 255, 255)
+        ["TextColor"] = Color3.fromRGB(255, 255, 255),
+        ["TabColor"] = Color3.fromRGB(255,255,255),
+        ["SecondaryColor"] = Color3.fromRGB(255,255,255)
     },
     ["Synapse X"] = {
         ["PresetColor"] = Color3.fromRGB(255, 154, 0),
         ["BackgroundColor"] = Color3.fromRGB(48, 48, 48),
         ["BackgroundPreset"] = Color3.fromRGB(68, 68, 68),
-        ["TextColor"] = Color3.fromRGB(255,255, 255)
+        ["TextColor"] = Color3.fromRGB(255,255, 255),
+        ["TabColor"] = Color3.fromRGB(255,255,255),
+        ["SecondaryColor"] = Color3.fromRGB(255, 255, 255)
+    },
+    ["Custom"] = {
+        ["PresetColor"] = Color3.fromRGB(44, 120, 224),
+        ["BackgroundColor"] = Color3.fromRGB(30, 30, 30),
+        ["BackgroundPreset"] = Color3.fromRGB(50, 50, 50),
+        ["TextColor"] = Color3.fromRGB(255, 255, 255),
+        ["TabColor"] = Color3.fromRGB(255,255,255),
+        ["SecondaryColor"] = Color3.fromRGB(50,50,50)
     }
 }
 local CloseBind = Enum.KeyCode.RightControl
@@ -250,13 +267,6 @@ function lib:Window(text, preset, closebind)
     function lib:ChangePresetTextColor(toch)
         PresetTextColor = Color3.fromRGB(toch.R * 255, toch.G * 255, toch.B * 255)
     end
-
-    function lib:ChangeTheme(theme)
-        Main.BackgroundColor3 = themeColor[theme]["BackgroundColor"]
-        PresetColor = themeColor[theme]["PresetColor"]
-        PresetTextColor = themeColor[theme]["TextColor"]
-        BackgroundPresetColor = themeColor[theme]["BackgroundPreset"]
-    end
     
     function lib:Notification(texttitle,textdesc,textbtn)
 
@@ -425,7 +435,7 @@ function lib:Window(text, preset, closebind)
         TabBtn.Text = ""
         spawn(function()
             while wait() do
-                TabBtn.TextColor3 = PresetTextColor
+                TabBtn.TextColor3 = TabColor
             end
         end)
         TabBtn.TextSize = 14.000
@@ -709,7 +719,7 @@ function lib:Window(text, preset, closebind)
 
             FrameToggle1.Name = "FrameToggle1"
             FrameToggle1.Parent = Toggle
-            FrameToggle1.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+            FrameToggle1.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
             FrameToggle1.Position = UDim2.new(0.859504104, 0, 0.285714298, 0)
             FrameToggle1.Size = UDim2.new(0, 37, 0, 18)
 
@@ -740,7 +750,7 @@ function lib:Window(text, preset, closebind)
 
             FrameToggleCircle.Name = "FrameToggleCircle"
             FrameToggleCircle.Parent = FrameToggle1
-            FrameToggleCircle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+            FrameToggleCircle.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
             FrameToggleCircle.Position = UDim2.new(0.127000004, 0, 0.222000003, 0)
             FrameToggleCircle.Size = UDim2.new(0, 10, 0, 10)
 
@@ -763,7 +773,7 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         Toggle,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = Color3.fromRGB(50,50,50)}
+                        {BackgroundColor3 = BackgroundPresetColor}
                     ):Play()
                     TweenService:Create(
                         FrameToggle1,
@@ -918,7 +928,7 @@ function lib:Window(text, preset, closebind)
 
             SlideFrame.Name = "SlideFrame"
             SlideFrame.Parent = Slider
-            SlideFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+            SlideFrame.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"])
             SlideFrame.BorderSizePixel = 0
             SlideFrame.Position = UDim2.new(0.0342647657, 0, 0.686091602, 0)
             SlideFrame.Size = UDim2.new(0, 335, 0, 3)
@@ -978,13 +988,13 @@ function lib:Window(text, preset, closebind)
                 SliderValue.FocusLost:Connect(function()
                     local realValue = SliderValue.Text
                     CurrentValueFrame:TweenSize(UDim2.new(
-                        math.clamp(((tonumber(realValue) + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1)*3.3,
+                        math.clamp(((tonumber(realValue)*3.3 + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
                         0,
                         0,
                         3
                     ), "Out", "Sine", 0.1, true)
                     SlideCircle:TweenPosition(UDim2.new(
-                        math.clamp(((tonumber(realValue) + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1)*3.3,
+                        math.clamp(((tonumber(realValue)*3.3 + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
                         -6,
                         -1.30499995,
                         0
@@ -1412,11 +1422,13 @@ function lib:Window(text, preset, closebind)
                 Item.MouseButton1Click:Connect(function()
                     droptog = not droptog
                     DropdownTitle.Text = text .. " - " .. v
+                    currentTheme = v
                     pcall(function()
                         Main.BackgroundColor3 = themeColor[v]["BackgroundColor"]
                         PresetColor = themeColor[v]["PresetColor"]
                         PresetTextColor = themeColor[v]["TextColor"]
                         BackgroundPresetColor = themeColor[v]["BackgroundPreset"]
+                        TabColor = themeColor[v]["TabColor"]
                     end, v)
                     Dropdown:TweenSize(UDim2.new(0, 363, 0, 42), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
                     TweenService:Create(
@@ -1601,7 +1613,7 @@ function lib:Window(text, preset, closebind)
 
             FrameRainbowToggle1.Name = "FrameRainbowToggle1"
             FrameRainbowToggle1.Parent = RainbowToggle
-            FrameRainbowToggle1.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+            FrameRainbowToggle1.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
             FrameRainbowToggle1.Position = UDim2.new(0.649999976, 0, 0.186000004, 0)
             FrameRainbowToggle1.Size = UDim2.new(0, 37, 0, 18)
 
@@ -1636,7 +1648,7 @@ function lib:Window(text, preset, closebind)
 
             FrameRainbowToggleCircle.Name = "FrameRainbowToggleCircle"
             FrameRainbowToggleCircle.Parent = FrameRainbowToggle1
-            FrameRainbowToggleCircle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+            FrameRainbowToggleCircle.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"])
             FrameRainbowToggleCircle.Position = UDim2.new(0.127000004, 0, 0.222000003, 0)
             FrameRainbowToggleCircle.Size = UDim2.new(0, 10, 0, 10)
 
@@ -1897,7 +1909,7 @@ function lib:Window(text, preset, closebind)
                         TweenService:Create(
                             FrameRainbowToggleCircle,
                             TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundColor3 = Color3.fromRGB(50,50,50)}
+                            {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                         ):Play()
                         FrameRainbowToggleCircle:TweenPosition(UDim2.new(0.127000004, 0, 0.222000003, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
 
