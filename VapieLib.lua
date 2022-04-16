@@ -689,7 +689,11 @@ function lib:Window(text, preset, closebind)
             FrameToggle3.Parent = FrameToggle1
             FrameToggle3.BackgroundTransparency = 1.000
             FrameToggle3.Size = UDim2.new(0, 37, 0, 18)
-            FrameToggle3.BackgroundColor3 = BackgroundPresetColor
+            spawn(function()
+                while wait() do
+                    FrameToggle3.BackgroundColor3 = BackgroundPresetColor
+                end
+            end)
 
             FrameToggle3Corner.Name = "FrameToggle3Corner"
             FrameToggle3Corner.Parent = FrameToggle3
@@ -745,11 +749,6 @@ function lib:Window(text, preset, closebind)
                     FrameToggleCircle:TweenPosition(UDim2.new(0.587, 0, 0.222000003, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
                 else
                     TweenService:Create(
-                        FrameToggle3,
-                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
-                    ):Play()
-                    TweenService:Create(
                         FrameToggle1,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
                         {BackgroundTransparency = 0}
@@ -763,6 +762,11 @@ function lib:Window(text, preset, closebind)
                         FrameToggle3,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
                         {BackgroundTransparency = 0}
+                    ):Play()
+                    TweenService:Create(
+                        FrameToggleCircle,
+                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+                        {BackgroundColor3 = Color3.fromRGB(255,255,255)}
                     ):Play()
                 end
                 toggled = not toggled
@@ -790,7 +794,6 @@ function lib:Window(text, preset, closebind)
                     TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
                     {BackgroundColor3 = Color3.fromRGB(255,255,255)}
                 ):Play()
-                FrameToggleCircle:TweenPosition(UDim2.new(0.587, 0, 0.222000003, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
                 toggled = not toggled
             end
             
@@ -2149,5 +2152,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.1.0")
+print("Version: 1.1.1")
 return lib
