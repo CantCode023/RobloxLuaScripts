@@ -907,6 +907,7 @@ function lib:Window(text, preset, closebind)
                     ):Play()
                     wait(.2)
                     Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
+                    droptog = not droptog
                 else
                     Dropdown:TweenSize(UDim2.new(0, 363, 0, 42), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
                     TweenService:Create(
@@ -916,8 +917,8 @@ function lib:Window(text, preset, closebind)
                     ):Play()
                     wait(.2)
                     Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
+                    droptog = not droptog
                 end
-                droptog = not droptog
             end)
             
             for i,v in next, list do
