@@ -2,7 +2,7 @@
 
     Original [
         Title: Vape Ui Library
-        Author: Unknown
+        Author: KinxHub Team
     ]
 
     Modded [
@@ -391,7 +391,7 @@ function lib:Window(text, preset, closebind)
             TweenService:Create(
                 OkayBtn,
                 TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                {BackgroundColor3 = BackgroundPresetColor}
+                {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
             ):Play()
         end)
 
@@ -399,7 +399,7 @@ function lib:Window(text, preset, closebind)
             TweenService:Create(
                 OkayBtn,
                 TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                {BackgroundColor3 = BackgroundPresetColor}
+                {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
             ):Play()
         end)
         
@@ -435,7 +435,7 @@ function lib:Window(text, preset, closebind)
         TabBtn.Text = ""
         spawn(function()
             while wait() do
-                TabBtn.TextColor3 = TabColor
+                TabBtn.TextColor3 = TabColor or themeColor[currentTheme]["TabColor"]
             end
         end)
         TabBtn.TextSize = 14.000
@@ -577,7 +577,7 @@ function lib:Window(text, preset, closebind)
                 TweenService:Create(
                     Button,
                     TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundColor3 = BackgroundPresetColor}
+                    {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                 ):Play()
             end)
             
@@ -585,7 +585,7 @@ function lib:Window(text, preset, closebind)
                 TweenService:Create(
                     Button,
                     TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundColor3 = BackgroundPresetColor}
+                    {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                 ):Play()
             end)
             
@@ -644,7 +644,7 @@ function lib:Window(text, preset, closebind)
                 TweenService:Create(
                     Button,
                     TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundColor3 = BackgroundPresetColor}
+                    {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                 ):Play()
             end)
             
@@ -652,7 +652,7 @@ function lib:Window(text, preset, closebind)
                 TweenService:Create(
                     Button,
                     TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundColor3 = BackgroundPresetColor}
+                    {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                 ):Play()
             end)
             
@@ -719,7 +719,11 @@ function lib:Window(text, preset, closebind)
 
             FrameToggle1.Name = "FrameToggle1"
             FrameToggle1.Parent = Toggle
-            FrameToggle1.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+            spawn(function()
+                while wait() do
+                    FrameToggle1.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+                end
+            end)
             FrameToggle1.Position = UDim2.new(0.859504104, 0, 0.285714298, 0)
             FrameToggle1.Size = UDim2.new(0, 37, 0, 18)
 
@@ -730,7 +734,7 @@ function lib:Window(text, preset, closebind)
             FrameToggle2.Parent = FrameToggle1
             spawn(function()
                 while wait() do
-                    FrameToggle2.BackgroundColor3 = BackgroundPresetColor
+                    FrameToggle2.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
                 end
             end)
             FrameToggle2.Position = UDim2.new(0.0489999987, 0, 0.0930000022, 0)
@@ -741,7 +745,11 @@ function lib:Window(text, preset, closebind)
 
             FrameToggle3.Name = "FrameToggle3"
             FrameToggle3.Parent = FrameToggle1
-            FrameToggle3.BackgroundColor3 = PresetColor
+            spawn(function()
+                while wait() do
+                    FrameToggle3.BackgroundColor3 = PresetColor
+                end
+            end)
             FrameToggle3.BackgroundTransparency = 1.000
             FrameToggle3.Size = UDim2.new(0, 37, 0, 18)
 
@@ -750,7 +758,11 @@ function lib:Window(text, preset, closebind)
 
             FrameToggleCircle.Name = "FrameToggleCircle"
             FrameToggleCircle.Parent = FrameToggle1
-            FrameToggleCircle.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+            spawn(function()
+                while wait() do
+                    FrameToggleCircle.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+                end
+            end)
             FrameToggleCircle.Position = UDim2.new(0.127000004, 0, 0.222000003, 0)
             FrameToggleCircle.Size = UDim2.new(0, 10, 0, 10)
 
@@ -773,7 +785,7 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         Toggle,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = BackgroundPresetColor}
+                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                     ):Play()
                     TweenService:Create(
                         FrameToggle1,
@@ -800,7 +812,7 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         Toggle,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = BackgroundPresetColor}
+                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}}
                     ):Play()
                     TweenService:Create(
                         FrameToggle1,
@@ -815,12 +827,12 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         FrameToggle3,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundTransparency = 1}
+                        {BackgroundTransparency = 0}
                     ):Play()
                     TweenService:Create(
                         FrameToggleCircle,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = BackgroundPresetColor}
+                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                     ):Play()
                     FrameToggleCircle:TweenPosition(UDim2.new(0.127000004, 0, 0.222000003, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
                 end
@@ -832,7 +844,7 @@ function lib:Window(text, preset, closebind)
                 TweenService:Create(
                     Toggle,
                     TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundColor3 = BackgroundPresetColor}
+                    {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                 ):Play()
                 TweenService:Create(
                     FrameToggle1,
@@ -928,7 +940,11 @@ function lib:Window(text, preset, closebind)
 
             SlideFrame.Name = "SlideFrame"
             SlideFrame.Parent = Slider
-            SlideFrame.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+            spawn(function()
+                while wait() do
+                    SlideFrame.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+                end
+            end)
             SlideFrame.BorderSizePixel = 0
             SlideFrame.Position = UDim2.new(0.0342647657, 0, 0.686091602, 0)
             SlideFrame.Size = UDim2.new(0, 335, 0, 3)
@@ -986,19 +1002,22 @@ function lib:Window(text, preset, closebind)
                 local value = math.floor(((pos.X.Scale * max) / max) * (max - min) + min)
                 SliderValue.Text = tostring(value)
                 SliderValue.FocusLost:Connect(function()
-                    local realValue = SliderValue.Text
-                    CurrentValueFrame:TweenSize(UDim2.new(
-                        math.clamp(((tonumber(realValue)*3.3 + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
+                    local realValue = tonumber(SliderValue.Text)
+                    local pos1df = UDim2.new(
+                        math.clamp((realValue*3.3 + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1,
                         0,
                         0,
                         3
-                    ), "Out", "Sine", 0.1, true)
-                    SlideCircle:TweenPosition(UDim2.new(
-                        math.clamp(((tonumber(realValue)*3.3 + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
+                    )
+                    local posdf = UDim2.new(
+                        math.clamp((realValue*3.3 + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1,
                         -6,
                         -1.30499995,
                         0
-                    ), "Out", "Sine", 0.1, true)
+                    )
+                    print(realValue, pos1df, posdf)
+                    CurrentValueFrame:TweenSize(pos1df, "Out", "Sine", 0.1, true)
+                    SlideCircle:TweenPosition(posdf, "Out", "Sine", 0.1, true)
                 end)
                 pcall(callback, value)
             end
@@ -1168,7 +1187,7 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         Item,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = BackgroundPresetColor}
+                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                     ):Play()
                 end)
                 
@@ -1176,7 +1195,7 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         Item,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = BackgroundPresetColor}
+                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                     ):Play()
                 end)
                 
@@ -1235,7 +1254,7 @@ function lib:Window(text, preset, closebind)
                         TweenService:Create(
                             Item,
                             TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundColor3 = BackgroundPresetColor}
+                            {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                         ):Play()
                     end)
                     
@@ -1243,7 +1262,7 @@ function lib:Window(text, preset, closebind)
                         TweenService:Create(
                             Item,
                             TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundColor3 = BackgroundPresetColor}
+                            {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                         ):Play()
                     end)
                     
@@ -1407,7 +1426,7 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         Item,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = BackgroundPresetColor}
+                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                     ):Play()
                 end)
                 
@@ -1415,7 +1434,7 @@ function lib:Window(text, preset, closebind)
                     TweenService:Create(
                         Item,
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = BackgroundPresetColor}
+                        {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
                     ):Play()
                 end)
 
@@ -1613,7 +1632,11 @@ function lib:Window(text, preset, closebind)
 
             FrameRainbowToggle1.Name = "FrameRainbowToggle1"
             FrameRainbowToggle1.Parent = RainbowToggle
-            FrameRainbowToggle1.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+            spawn(function()
+                while wait() do
+                    FrameRainbowToggle1.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+                end
+            end)
             FrameRainbowToggle1.Position = UDim2.new(0.649999976, 0, 0.186000004, 0)
             FrameRainbowToggle1.Size = UDim2.new(0, 37, 0, 18)
 
@@ -1648,7 +1671,9 @@ function lib:Window(text, preset, closebind)
 
             FrameRainbowToggleCircle.Name = "FrameRainbowToggleCircle"
             FrameRainbowToggleCircle.Parent = FrameRainbowToggle1
-            FrameRainbowToggleCircle.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+            spawn(function()
+                FrameRainbowToggleCircle.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+            end)
             FrameRainbowToggleCircle.Position = UDim2.new(0.127000004, 0, 0.222000003, 0)
             FrameRainbowToggleCircle.Size = UDim2.new(0, 10, 0, 10)
 
