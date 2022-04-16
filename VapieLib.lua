@@ -629,7 +629,6 @@ function lib:Window(text, preset, closebind)
             local FrameToggleCircle = Instance.new("Frame")
             local FrameToggleCircleCorner = Instance.new("UICorner")
 
-
             Toggle.Name = "Toggle"
             Toggle.Parent = Tab
             spawn(function()
@@ -937,18 +936,21 @@ function lib:Window(text, preset, closebind)
                 SliderValue.Text = tostring(value)
                 SliderValue.FocusLost:Connect(function()
                     local realValue = tonumber(SliderValue.Text)
-                    local pos1df = UDim2.new(
-                        math.clamp(((realValue*3.3 + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
-                        0,
-                        0,
-                        3
-                    )
-                    local posdf = UDim2.new(
-                        math.clamp(((realValue*3.3 + 550) - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
-                        -6,
-                        -1.30499995,
-                        0
-                    )
+                    -- math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X) ,0, 1)
+                    local posdf =
+                        UDim2.new(
+                            math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
+                            -6,
+                            -1.30499995,
+                            0
+                        )
+                    local pos1df =
+                        UDim2.new(
+                            math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
+                            0,
+                            0,
+                            3
+                        )
                     print(realValue, pos1df, posdf)
                     CurrentValueFrame:TweenSize(pos1df, "Out", "Sine", 0.1, true)
                     SlideCircle:TweenPosition(posdf, "Out", "Sine", 0.1, true)
@@ -1949,7 +1951,7 @@ function lib:Window(text, preset, closebind)
             TextBox.Text = ""
             spawn(function()
                 while wait() do
-                    Textbox.TextColor3 = PresetTextColor
+                    TextBox.TextColor3 = PresetTextColor
                 end
             end)
             TextBox.TextScaled = true
@@ -2141,4 +2143,4 @@ function lib:Window(text, preset, closebind)
 end
 return lib
 
--- Version 1.0.0
+-- Version 1.0.1
