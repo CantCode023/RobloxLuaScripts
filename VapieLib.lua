@@ -906,7 +906,29 @@ function lib:Window(text, preset, closebind)
                 end
             )()
 
-            
+            SliderValue.FocusLost:Connect(
+                function(enterPressed)
+                    if enterPressed then
+                        local realValue = tonumber(SliderValue.Text)
+                        local posdf =
+                            UDim2.new(
+                                math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
+                                -6,
+                                -1.30499995,
+                                0
+                            )
+                        local pos1df =
+                            UDim2.new(
+                                math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
+                                0,
+                                0,
+                                3
+                            )
+                        CurrentValueFrame:TweenSize(pos1df, "Out", "Sine", 0.1, true)
+                        SlideCircle:TweenPosition(posdf, "Out", "Sine", 0.1, true)
+                    end
+                end
+            )
             
             local function move(input)
                 -- local a = {
@@ -955,28 +977,20 @@ function lib:Window(text, preset, closebind)
                     CurrentValueFrame:TweenSize(pos1df, "Out", "Sine", 0.1, true)
                     SlideCircle:TweenPosition(posdf, "Out", "Sine", 0.1, true)
                 end)
-                SliderValue.FocusLost:Connect(function()
-                    print("Focus Lost!")
-                    local realValue = tonumber(SliderValue.Text)
-                    -- math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X) ,0, 1)
-                    local posdf =
-                        UDim2.new(
-                            math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
-                            -6,
-                            -1.30499995,
-                            0
-                        )
-                    local pos1df =
-                        UDim2.new(
-                            math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
-                            0,
-                            0,
-                            3
-                        )
-                    print(realValue, pos1df, posdf)
-                    CurrentValueFrame:TweenSize(pos1df, "Out", "Sine", 0.1, true)
-                    SlideCircle:TweenPosition(posdf, "Out", "Sine", 0.1, true)
-                end)
+                -- local posdf =
+                --     UDim2.new(
+                --         math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
+                --         -6,
+                --         -1.30499995,
+                --         0
+                --     )
+                -- local pos1df =
+                --     UDim2.new(
+                --         math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
+                --         0,
+                --         0,
+                --         3
+                --     )
                 pcall(callback, value)
             end
 
@@ -2165,4 +2179,4 @@ function lib:Window(text, preset, closebind)
 end
 return lib
 
--- Version 1.0.2
+-- Version 1.0.3
