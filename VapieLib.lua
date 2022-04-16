@@ -434,7 +434,7 @@ function lib:Window(text, preset, closebind)
         TabTitle.Text = nama
         spawn(function()
             while wait() do
-                TabTitle.TextColor3 = PresetTextColor
+                TabTitle.TextColor3 = themeColor[currentTheme]["TabColor"]
             end
         end)
         TabTitle.TextSize = 14.000
@@ -484,7 +484,7 @@ function lib:Window(text, preset, closebind)
             TabBtnIndicator.Size = UDim2.new(0, 13, 0, 2)
             spawn(function()
                 while wait() do
-                    TabTitle.TextColor3 = PresetTextColor
+                    TabTitle.TextColor3 = themeColor[currentTheme]["TabColor"]
                 end
             end)
             Tab.Visible = true
@@ -689,6 +689,7 @@ function lib:Window(text, preset, closebind)
             FrameToggle3.Parent = FrameToggle1
             FrameToggle3.BackgroundTransparency = 1.000
             FrameToggle3.Size = UDim2.new(0, 37, 0, 18)
+            FrameToggle3.BackgroundColor3 = BackgroundPresetColor
 
             FrameToggle3Corner.Name = "FrameToggle3Corner"
             FrameToggle3Corner.Parent = FrameToggle3
@@ -763,12 +764,6 @@ function lib:Window(text, preset, closebind)
                         TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
                         {BackgroundTransparency = 0}
                     ):Play()
-                    TweenService:Create(
-                        FrameToggleCircle,
-                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = Color3.fromRGB(255,255,255)}
-                    ):Play()
-                    FrameToggleCircle:TweenPosition(UDim2.new(0.127000004, 0, 0.222000003, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
                 end
                 toggled = not toggled
                 pcall(callback, toggled)
@@ -2154,5 +2149,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.0.9")
+print("Version: 1.1.0")
 return lib
