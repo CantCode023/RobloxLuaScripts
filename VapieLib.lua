@@ -834,21 +834,21 @@ function lib:Window(text, preset, closebind)
                 local value = math.floor(((pos.X.Scale * max) / max) * (max - min) + min)
                 SliderValue.Text = tostring(value)
                 SliderValue.FocusLost:Connect(function()
-                    local realValue = ((pos.X.Scale * max) / max) * (max - min) + min
-                    local pos = UDim2.new(
+                    local realValue = SliderValue.Text
+                    local posdf = UDim2.new(
                         math.clamp((realValue + 550 - min) / (max - min), 0, 1),
                         0,
                         0,
                         3
                     )
-                    local pos1 = UDim2.new(
+                    local posdf1 = UDim2.new(
                         math.clamp((realValue + 550 - min) / (max - min), 0, 1),
                         -6,
                         -1.30499995,
                         0
                     )
-                    CurrentValueFrame:TweenSize(pos1, "Out", "Sine", 0.1, true)
-                    SlideCircle:TweenPosition(pos, "Out", "Sine", 0.1, true)
+                    CurrentValueFrame:TweenSize(posdf1, "Out", "Sine", 0.1, true)
+                    SlideCircle:TweenPosition(posdf, "Out", "Sine", 0.1, true)
                 end)
                 pcall(callback, value)
             end
