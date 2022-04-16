@@ -332,7 +332,7 @@ Dropdown.Position = UDim2.new(-0.055555556, 0, 0.0833333284, 0)
 Dropdown.Size = UDim2.new(0, 200, 0, 20)
 Dropdown.ZIndex = 2
 Dropdown.Font = Enum.Font.GothamBold
-Dropdown.Text = "      Dropdown"
+Dropdown.Text = "   Dropdown"
 Dropdown.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
 Dropdown.TextSize = 14
 Dropdown.TextXAlignment = Enum.TextXAlignment.Left
@@ -1214,25 +1214,7 @@ function library:AddWindow(title, options)
 						local toggled = false
 						switch.MouseButton1Click:Connect(function()
 							toggled = not toggled
-							local frame = Instance.new("Frame", switch)
-							spawn(function()
-								while true do
-									if frame then
-										frame.Name = "ToggleBackFrame"
-										frame.BackgroundColor3 = options.main_color
-										Switch.BackgroundTransparency = 1
-										Switch.BorderSizePixel = 0
-										Switch.Position = UDim2.new(0.229411766, 0, 0.20714286, 0)
-										Switch.Size = UDim2.new(0, 20, 0, 20)
-										Switch.ZIndex = 2
-										Switch.Font = Enum.Font.SourceSans
-										Switch.Text = ""
-										Switch.TextColor3 = Color3.new(1, 1, 1)
-										Switch.TextSize = 18
-									end
-									RS.Heartbeat:Wait()
-								end
-							end)
+							switch.Text = toggled and "✓"
 							pcall(callback, toggled)
 						end)
 
@@ -1463,7 +1445,7 @@ function library:AddWindow(title, options)
 						dropdown:GetChildren()[3].ZIndex = dropdown:GetChildren()[3].ZIndex + (windows * 10)
 
 						dropdown.Parent = new_tab
-						dropdown.Text = "      " .. dropdown_name
+						dropdown.Text = "   " .. dropdown_name
 						box.Size = UDim2.new(1, 0, 0, 0)
 
 						local open = false
@@ -1517,7 +1499,7 @@ function library:AddWindow(title, options)
 
 							object.MouseButton1Click:Connect(function()
 								if dropdown_open then
-									dropdown.Text = "      [ " .. n .. " ]"
+									dropdown.Text = "   [ " .. n .. " ]"
 									dropdown_open = false
 									open = false
 									Resize(box, {Size = UDim2.new(1, 0, 0, 0)}, options.tween_time)
