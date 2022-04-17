@@ -1940,16 +1940,10 @@ function lib:Window(text, preset, closebind)
                 
                 DropItemHolder.CanvasSize = UDim2.new(0, 0, 0, DropLayout.AbsoluteContentSize.Y)
             end
-            Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
             local dropholder = {}
             function dropholder:Refresh()
-                for _,v in pairs(DropItemHolder:GetChildren()) do
-                    v:Destroy()
-                end
-
-                repeat wait() until #DropItemHolder:GetChildren() == 0
-
-                for _,v in next, list do
+                print(list)
+                for i,v in next, list do
                     itemcount = itemcount + 1
                     if itemcount <= 3 then
                         framesize = framesize + 26
@@ -2010,6 +2004,7 @@ function lib:Window(text, preset, closebind)
                     return false
                 end
             end
+            Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
             return dropholder
         end
         function tabcontent:ChangeTheme()
@@ -3229,5 +3224,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.3.3")
+print("Version: 1.3.4")
 return lib
