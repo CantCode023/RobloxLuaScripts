@@ -924,10 +924,15 @@ function lib:Window(text, preset, closebind)
                             )
                         CurrentValueFrame:TweenSize(pos1df, "Out", "Sine", 0.1, true)
                         SlideCircle:TweenPosition(posdf, "Out", "Sine", 0.1, true)
+                        local success, err = pcall(callback, realValue)
+                        if success then
+                            print("Success")
+                        else
+                            print("An error was found!\n\n" .. tostring(err))
+                        end
                     end
                 end
             )
-            pcall(callback, realValue)
             
             local function move(input)
                 local pos =
@@ -1514,7 +1519,7 @@ function lib:Window(text, preset, closebind)
             FrameRainbowToggle1.Parent = RainbowToggle
             spawn(function()
                 while wait() do
-                    FrameRainbowToggle1.BackgroundColor3 = BackgroundPresetColor
+                    FrameRainbowToggle1.BackgroundColor3 = PresetColor
                 end
             end)
             FrameRainbowToggle1.Position = UDim2.new(0.649999976, 0, 0.186000004, 0)
@@ -1529,7 +1534,7 @@ function lib:Window(text, preset, closebind)
             FrameRainbowToggle2.BackgroundTransparency = 0
             spawn(function()
                 while wait() do
-                    FrameRainbowToggle2.BackgroundColor3 = BackgroundPresetColor
+                    FrameRainbowToggle2.BackgroundColor3 = PresetColor
                 end
             end)
             FrameRainbowToggle2.Position = UDim2.new(0.0590000004, 0, 0.112999998, 0)
@@ -2142,5 +2147,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.2.1")
+print("Version: 1.2.2")
 return lib
