@@ -1984,6 +1984,18 @@ function lib:Window(text, preset, closebind)
                     DropItemHolder.CanvasSize = UDim2.new(0, 0, 0, DropLayout.AbsoluteContentSize.Y)
                 end
             end
+            function dropholder:Add(n)
+                table.insert(list, n)
+                dropholder:Refresh()
+            end
+            function dropholder:Remove(n)
+                if table.find(list,n) then
+                    table.remove(list, table.find(list,n))
+                    dropholder:Refresh()
+                else
+                    return false
+                end
+            end
             return dropholder
         end
         function tabcontent:ChangeTheme()
@@ -3244,5 +3256,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.2.7")
+print("Version: 1.2.8")
 return lib
