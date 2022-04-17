@@ -5,7 +5,7 @@
         Author: KinxHub Team
     ]
 
-    Modded [
+    Remake [
         Title: Vapie Ui Library
         Author: https://github.com/CantCode023
     ]
@@ -30,7 +30,8 @@ local themeColor = {
         ["BackgroundPreset"] = Color3.fromRGB(50, 50, 50),
         ["TextColor"] = Color3.fromRGB(255, 255, 255),
         ["TabColor"] = Color3.fromRGB(255,255,255),
-        ["SecondaryColor"] = Color3.fromRGB(120,120,120)
+        ["SecondaryColor"] = Color3.fromRGB(120,120,120),
+        ["TextBoxColor"] = Color3.fromRGB(255,255,255)
     },
     ["Sakura"] = {
         ["PresetColor"] = Color3.fromRGB(255, 124, 231),
@@ -38,15 +39,17 @@ local themeColor = {
         ["BackgroundPreset"] = Color3.fromRGB(255, 150, 212),
         ["TextColor"] = Color3.fromRGB(255,255,255),
         ["TabColor"] = Color3.fromRGB(255, 124, 231),
-        ["SecondaryColor"] = Color3.fromRGB(255, 255, 255)
+        ["SecondaryColor"] = Color3.fromRGB(255, 255, 255),
+        ["TextBoxColor"] = Color3.fromRGB(0,0,0)
     },
     ["Dark Sakura"] = {
         ["PresetColor"] = Color3.fromRGB(255, 124, 231),
         ["BackgroundColor"] = Color3.fromRGB(32, 32, 32),
-        ["BackgroundPreset"] = Color3.fromRGB(165, 82, 132),
+        ["BackgroundPreset"] = Color3.fromRGB(204, 68, 169),
         ["TextColor"] = Color3.fromRGB(255, 255, 255),
         ["TabColor"] = Color3.fromRGB(255,255,255),
-        ["SecondaryColor"] = Color3.fromRGB(255, 255, 255)
+        ["SecondaryColor"] = Color3.fromRGB(255, 255, 255),
+        ["TextBoxColor"] = Color3.fromRGB(0,0,0)
     },
     ["Honey"] = {
         ["PresetColor"] = Color3.fromRGB(255, 219, 143),
@@ -54,7 +57,8 @@ local themeColor = {
         ["BackgroundPreset"] = Color3.fromRGB(159, 121, 43),
         ["TextColor"] = Color3.fromRGB(255, 255, 255),
         ["TabColor"] = Color3.fromRGB(255,255,255),
-        ["SecondaryColor"] = Color3.fromRGB(255,255,255)
+        ["SecondaryColor"] = Color3.fromRGB(255,255,255),
+        ["TextBoxColor"] = Color3.fromRGB(0,0,0)
     },
     ["Synapse X"] = {
         ["PresetColor"] = Color3.fromRGB(255, 154, 0),
@@ -62,7 +66,8 @@ local themeColor = {
         ["BackgroundPreset"] = Color3.fromRGB(68, 68, 68),
         ["TextColor"] = Color3.fromRGB(255,255, 255),
         ["TabColor"] = Color3.fromRGB(255,255,255),
-        ["SecondaryColor"] = Color3.fromRGB(255, 255, 255)
+        ["SecondaryColor"] = Color3.fromRGB(255, 255, 255),
+        ["TextBoxColor"] = Color3.fromRGB(0,0,0)
     },
     ["Custom"] = {
         ["PresetColor"] = Color3.fromRGB(44, 120, 224),
@@ -70,7 +75,8 @@ local themeColor = {
         ["BackgroundPreset"] = Color3.fromRGB(50, 50, 50),
         ["TextColor"] = Color3.fromRGB(255, 255, 255),
         ["TabColor"] = Color3.fromRGB(255,255,255),
-        ["SecondaryColor"] = Color3.fromRGB(50,50,50)
+        ["SecondaryColor"] = Color3.fromRGB(50,50,50),
+        ["TextBoxColor"] = Color3.fromRGB(255,255,255)
     }
 }
 local CloseBind = Enum.KeyCode.RightControl
@@ -896,10 +902,11 @@ function lib:Window(text, preset, closebind)
                 end
             )()
 
+            local realValue;
             SliderValue.FocusLost:Connect(
                 function(enterPressed)
                     if enterPressed then
-                        local realValue = tonumber(SliderValue.Text)
+                        realValue = tonumber(SliderValue.Text)
                         local posdf =
                             UDim2.new(
                                 math.clamp(realValue/100, 0, 1),
@@ -920,15 +927,9 @@ function lib:Window(text, preset, closebind)
                     end
                 end
             )
+            pcall(callback, realValue)
             
             local function move(input)
-                -- local a = {
-                --     ["0"] = 514,
-                --     ["1"] = 552,
-                --     ["2"] = 556,
-
-                --     ["16"] = 604
-                -- }
                 local pos =
                     UDim2.new(
                         math.clamp((input.Position.X - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
@@ -947,21 +948,7 @@ function lib:Window(text, preset, closebind)
                 SlideCircle:TweenPosition(pos, "Out", "Sine", 0.1, true)
                 local value = math.floor(((pos.X.Scale * max) / max) * (max - min) + min)
                 SliderValue.Text = tostring(value)
-                -- local posdf =
-                --     UDim2.new(
-                --         math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
-                --         -6,
-                --         -1.30499995,
-                --         0
-                --     )
-                -- local pos1df =
-                --     UDim2.new(
-                --         math.clamp((((realValue + 550) - SlideFrame.AbsoluteSize.X)/SlideFrame.AbsoluteSize.X), 0, 1),
-                --         0,
-                --         0,
-                --         3
-                --     )
-                pcall(callback, value)
+                pcall(callback, value or realValue)
             end
 
 
@@ -1527,7 +1514,7 @@ function lib:Window(text, preset, closebind)
             FrameRainbowToggle1.Parent = RainbowToggle
             spawn(function()
                 while wait() do
-                    FrameRainbowToggle1.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+                    FrameRainbowToggle1.BackgroundColor3 = BackgroundPresetColor
                 end
             end)
             FrameRainbowToggle1.Position = UDim2.new(0.649999976, 0, 0.186000004, 0)
@@ -1573,7 +1560,11 @@ function lib:Window(text, preset, closebind)
             FrameRainbowToggleCircle.Parent = FrameRainbowToggle1
             FrameRainbowToggleCircle.Position = UDim2.new(0.127000004, 0, 0.222000003, 0)
             FrameRainbowToggleCircle.Size = UDim2.new(0, 10, 0, 10)
-
+            spawn(function()
+                while wait() do
+                    FrameRainbowToggleCircle.BackgroundColor3 = Color3.fromRGB(255,255,255)
+                end
+            end)
             FrameRainbowToggleCircleCorner.Name = "FrameRainbowToggleCircleCorner"
             FrameRainbowToggleCircleCorner.Parent = FrameRainbowToggleCircle
 
@@ -1821,7 +1812,7 @@ function lib:Window(text, preset, closebind)
                         TweenService:Create(
                             FrameRainbowToggle2,
                             TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundTransparency = 0}
+                            {BackgroundTransparency = 1}
                         ):Play()
                         TweenService:Create(
                             FrameRainbowToggle3,
@@ -1958,10 +1949,10 @@ function lib:Window(text, preset, closebind)
             TextBox.Size = UDim2.new(0, 200, 0, 23)
             TextBox.Font = Enum.Font.GothamBlack
             TextBox.Text = ""
-            TextBox.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
             spawn(function()
                 while wait() do
-                    TextBox.TextColor3 = PresetTextColor
+                    TextBox.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+                    TextBox.TextColor3 = themeColor[currentTheme]["TextBoxColor"]
                 end
             end)
             TextBox.TextScaled = true
@@ -2151,5 +2142,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.1.9")
+print("Version: 1.2.1")
 return lib
