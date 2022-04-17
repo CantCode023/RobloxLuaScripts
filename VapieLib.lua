@@ -567,6 +567,7 @@ ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.ScrollBarThickness = 4
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.XY
+ScrollingFrame.ClipsDescendants = true
 
 Source.Name = "Source"
 Source.Parent = ScrollingFrame
@@ -1942,11 +1943,13 @@ function lib:Window(text, preset, closebind)
             Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
             local dropholder = {}
             function dropholder:Refresh()
-                for i,v in pairs(DropItemHolder:GetChildren()) do
+                for _,v in pairs(DropItemHolder:GetChildren()) do
                     v:Destroy()
                 end
 
-                for i,v in next, list do
+                repeat wait() until #DropItemHolder:GetChildren() == 0
+
+                for _,v in next, list do
                     itemcount = itemcount + 1
                     if itemcount <= 3 then
                         framesize = framesize + 26
@@ -3226,5 +3229,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.3.0")
+print("Version: 1.3.1")
 return lib
