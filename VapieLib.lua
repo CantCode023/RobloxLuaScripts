@@ -565,6 +565,7 @@ ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Size = UDim2.new(1, 0, 1, 1)
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.ScrollBarThickness = 4
+ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
 Source.Name = "Source"
 Source.Parent = ScrollingFrame
@@ -579,11 +580,14 @@ Source.MultiLine = true
 Source.PlaceholderColor3 = Color3.new(0.8, 0.8, 0.8)
 Source.Text = ""
 Source.TextColor3 = Color3.new(1, 1, 1)
-Source.TextSize = 15
+Source.TextSize = 12
 Source.TextStrokeColor3 = Color3.new(1, 1, 1)
 Source.TextWrapped = true
 Source.TextXAlignment = Enum.TextXAlignment.Left
 Source.TextYAlignment = Enum.TextYAlignment.Top
+Source.AutomaticSize = Enum.AutomaticSize.XY
+
+-- asdasd
 
 Comments.Name = "Comments"
 Comments.Parent = Source
@@ -594,7 +598,7 @@ Comments.ZIndex = 5
 Comments.Font = Enum.Font.Code
 Comments.Text = ""
 Comments.TextColor3 = Color3.new(0.231373, 0.784314, 0.231373)
-Comments.TextSize = 15
+Comments.TextSize = 12
 Comments.TextXAlignment = Enum.TextXAlignment.Left
 Comments.TextYAlignment = Enum.TextYAlignment.Top
 
@@ -607,7 +611,7 @@ Globals.ZIndex = 5
 Globals.Font = Enum.Font.Code
 Globals.Text = ""
 Globals.TextColor3 = Color3.new(0.517647, 0.839216, 0.968628)
-Globals.TextSize = 15
+Globals.TextSize = 12
 Globals.TextXAlignment = Enum.TextXAlignment.Left
 Globals.TextYAlignment = Enum.TextYAlignment.Top
 
@@ -620,7 +624,7 @@ Keywords.ZIndex = 5
 Keywords.Font = Enum.Font.Code
 Keywords.Text = ""
 Keywords.TextColor3 = Color3.new(0.972549, 0.427451, 0.486275)
-Keywords.TextSize = 15
+Keywords.TextSize = 12
 Keywords.TextXAlignment = Enum.TextXAlignment.Left
 Keywords.TextYAlignment = Enum.TextYAlignment.Top
 
@@ -633,7 +637,7 @@ RemoteHighlight.ZIndex = 5
 RemoteHighlight.Font = Enum.Font.Code
 RemoteHighlight.Text = ""
 RemoteHighlight.TextColor3 = Color3.new(0, 0.568627, 1)
-RemoteHighlight.TextSize = 15
+RemoteHighlight.TextSize = 12
 RemoteHighlight.TextXAlignment = Enum.TextXAlignment.Left
 RemoteHighlight.TextYAlignment = Enum.TextYAlignment.Top
 
@@ -646,7 +650,7 @@ Strings.ZIndex = 5
 Strings.Font = Enum.Font.Code
 Strings.Text = ""
 Strings.TextColor3 = Color3.new(0.678431, 0.945098, 0.584314)
-Strings.TextSize = 15
+Strings.TextSize = 12
 Strings.TextXAlignment = Enum.TextXAlignment.Left
 Strings.TextYAlignment = Enum.TextYAlignment.Top
 
@@ -659,7 +663,7 @@ Tokens.ZIndex = 5
 Tokens.Font = Enum.Font.Code
 Tokens.Text = ""
 Tokens.TextColor3 = Color3.new(1, 1, 1)
-Tokens.TextSize = 15
+Tokens.TextSize = 12
 Tokens.TextXAlignment = Enum.TextXAlignment.Left
 Tokens.TextYAlignment = Enum.TextYAlignment.Top
 
@@ -672,7 +676,7 @@ Numbers.ZIndex = 4
 Numbers.Font = Enum.Font.Code
 Numbers.Text = ""
 Numbers.TextColor3 = Color3.new(1, 0.776471, 0)
-Numbers.TextSize = 15
+Numbers.TextSize = 12
 Numbers.TextXAlignment = Enum.TextXAlignment.Left
 Numbers.TextYAlignment = Enum.TextYAlignment.Top
 
@@ -685,7 +689,7 @@ Info.ZIndex = 5
 Info.Font = Enum.Font.Code
 Info.Text = ""
 Info.TextColor3 = Color3.new(0, 0.635294, 1)
-Info.TextSize = 15
+Info.TextSize = 12
 Info.TextXAlignment = Enum.TextXAlignment.Left
 Info.TextYAlignment = Enum.TextYAlignment.Top
 
@@ -699,7 +703,7 @@ Lines.ZIndex = 4
 Lines.Font = Enum.Font.Code
 Lines.Text = "1\n"
 Lines.TextColor3 = Color3.new(1, 1, 1)
-Lines.TextSize = 15
+Lines.TextSize = 12
 Lines.TextWrapped = true
 Lines.TextYAlignment = Enum.TextYAlignment.Top
 
@@ -2970,6 +2974,11 @@ function lib:Window(text, preset, closebind)
             console.Parent = Tab
             console.ZIndex = console.ZIndex + (windows * 10)
             console.Size = UDim2.new(1, 0, console_options.full and 1 or 0, console_options.y)
+            spawn(function()
+                while wait() do
+                    console.ImageColor3 = BackgroundPresetColor
+                end
+            end)
 
             local sf = console:GetChildren()[1]
             local Source = sf:FindFirstChild("Source")
@@ -3121,28 +3130,6 @@ function lib:Window(text, preset, closebind)
                     return highlight
                 end
 
-                local comments = function(string)
-                    local ret = ""
-                    string:gsub("[^\r\n]+", function(c)
-                        local comm = false
-                        local i = 0
-                        c:gsub(".", function(n)
-                            i = i + 1
-                            if c:sub(i, i + 1) == "--" then
-                                comm = true
-                            end
-                            if comm == true then
-                                ret = ret .. n
-                            else
-                                ret = ret .. "\32"
-                            end
-                        end)
-                        ret = ret
-                    end)
-
-                    return ret
-                end
-
                 local numbers = function(string)
                     local A = ""
                     string:gsub(".", function(c)
@@ -3172,7 +3159,6 @@ function lib:Window(text, preset, closebind)
                         Source.Tokens.Text = hTokens(s)
                         Source.Numbers.Text = numbers(s)
                         Source.Strings.Text = strings(s)
-                        Source.Comments.Text = comments(s)
 
                         local lin = 1
                         s:gsub("\n", function()
@@ -3229,32 +3215,9 @@ function lib:Window(text, preset, closebind)
 
             return console_data, console
         end
-        function tabcontent:HorizontalAlignment()
-            local ha_data = {}
-
-            local ha = Prefabs:FindFirstChild("HorizontalAlignment"):Clone()
-            ha.Parent = Tab
-
-            function ha_data:Button(...)
-                local data, object
-                local ret = {tabcontent:Button(...)}
-                if typeof(ret[1]) == "table" then
-                    data = ret[1]
-                    object = ret[2]
-                    object.Parent = ha
-                    return data, object
-                else
-                    object = ret[1]
-                    object.Parent = ha
-                    return object
-                end
-            end
-
-            return ha_data, ha
-        end
         return tabcontent
     end
     return tabhold
 end
-print("Version: 1.2.8")
+print("Version: 1.2.9")
 return lib
