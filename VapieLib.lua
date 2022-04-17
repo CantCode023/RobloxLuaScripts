@@ -679,7 +679,7 @@ function lib:Window(text, preset, closebind)
             FrameToggle2.Parent = FrameToggle1
             FrameToggle2.Position = UDim2.new(0.0489999987, 0, 0.0930000022, 0)
             FrameToggle2.Size = UDim2.new(0, 33, 0, 14)
-
+            FrameToggle2.BackgroundTransparency = 0
             FrameToggle2Corner.Name = "FrameToggle2Corner"
             FrameToggle2Corner.Parent = FrameToggle2
 
@@ -1539,7 +1539,7 @@ function lib:Window(text, preset, closebind)
 
             FrameRainbowToggle2.Name = "FrameRainbowToggle2"
             FrameRainbowToggle2.Parent = FrameRainbowToggle1
-            FrameRainbowToggle2.BackgroundTransparency = 1
+            FrameRainbowToggle2.BackgroundTransparency = 0
             spawn(function()
                 while wait() do
                     FrameRainbowToggle2.BackgroundColor3 = BackgroundPresetColor
@@ -1571,11 +1571,6 @@ function lib:Window(text, preset, closebind)
 
             FrameRainbowToggleCircle.Name = "FrameRainbowToggleCircle"
             FrameRainbowToggleCircle.Parent = FrameRainbowToggle1
-            spawn(function()
-                while wait() do
-                    FrameRainbowToggleCircle.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
-                end
-            end)
             FrameRainbowToggleCircle.Position = UDim2.new(0.127000004, 0, 0.222000003, 0)
             FrameRainbowToggleCircle.Size = UDim2.new(0, 10, 0, 10)
 
@@ -1836,7 +1831,7 @@ function lib:Window(text, preset, closebind)
                         TweenService:Create(
                             FrameRainbowToggleCircle,
                             TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]}
+                            {BackgroundColor3 = Color3.fromRGB(255,255,255)}
                         ):Play()
                         FrameRainbowToggleCircle:TweenPosition(UDim2.new(0.127000004, 0, 0.222000003, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .2, true)
 
@@ -2156,5 +2151,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.1.8")
+print("Version: 1.1.9")
 return lib
