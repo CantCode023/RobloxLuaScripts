@@ -1115,7 +1115,7 @@ function lib:Window(text, preset, closebind)
         NotificationFrame.AnchorPoint = Vector2.new(0.5, 0.5)
         spawn(function()
             while wait() do
-                NotificationFrame.BackgroundColor3 = BackgroundPresetColor
+                NotificationFrame.BackgroundColor3 = themeColor[currentTheme]["BackgroundColor"]
             end
         end)
         NotificationFrame.BorderSizePixel = 0
@@ -3229,5 +3229,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.3.1")
+print("Version: 1.3.3")
 return lib
