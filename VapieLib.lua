@@ -3217,9 +3217,32 @@ function lib:Window(text, preset, closebind)
 
             return console_data, console
         end
+        function tabcontent:HorizontalAlignment()
+            local ha_data = {}
+
+            local ha = Prefabs:FindFirstChild("HorizontalAlignment"):Clone()
+            ha.Parent = Tab
+
+            function ha_data:Button(...)
+                local data, object
+                local ret = {tabcontent:Button(...)}
+                if typeof(ret[1]) == "table" then
+                    data = ret[1]
+                    object = ret[2]
+                    object.Parent = ha
+                    return data, object
+                else
+                    object = ret[1]
+                    object.Parent = ha
+                    return object
+                end
+            end
+
+            return ha_data, ha
+        end
         return tabcontent
     end
     return tabhold
 end
-print("Version: 1.2.6")
+print("Version: 1.2.7")
 return lib
