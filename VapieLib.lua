@@ -565,7 +565,8 @@ ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Size = UDim2.new(1, 0, 1, 1)
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.ScrollBarThickness = 4
-ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.XY
 
 Source.Name = "Source"
 Source.Parent = ScrollingFrame
@@ -586,8 +587,6 @@ Source.TextWrapped = true
 Source.TextXAlignment = Enum.TextXAlignment.Left
 Source.TextYAlignment = Enum.TextYAlignment.Top
 Source.AutomaticSize = Enum.AutomaticSize.XY
-
--- asdasd
 
 Comments.Name = "Comments"
 Comments.Parent = Source
@@ -1113,7 +1112,11 @@ function lib:Window(text, preset, closebind)
         NotificationFrame.Name = "NotificationFrame"
         NotificationFrame.Parent = NotificationHold
         NotificationFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-        NotificationFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        spawn(function()
+            while wait() do
+                NotificationFrame.BackgroundColor3 = BackgroundPresetColor
+            end
+        end)
         NotificationFrame.BorderSizePixel = 0
         NotificationFrame.ClipsDescendants = true
         NotificationFrame.Position = UDim2.new(0.5, 0, 0.498432577, 0)
@@ -1939,6 +1942,10 @@ function lib:Window(text, preset, closebind)
             Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
             local dropholder = {}
             function dropholder:Refresh()
+                for i,v in pairs(DropItemHolder:GetChildren()) do
+                    v:Destroy()
+                end
+
                 for i,v in next, list do
                     itemcount = itemcount + 1
                     if itemcount <= 3 then
@@ -3219,5 +3226,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.2.9")
+print("Version: 1.3.0")
 return lib
