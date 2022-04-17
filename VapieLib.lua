@@ -1956,7 +1956,7 @@ function lib:Window(text, preset, closebind)
             TextBox.Text = ""
             spawn(function()
                 while wait() do
-                    TextBox.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
+                    TextboxFrame.BackgroundColor3 = themeColor[currentTheme]["SecondaryColor"]
                     TextBox.TextColor3 = themeColor[currentTheme]["TextBoxColor"]
                 end
             end)
@@ -2147,5 +2147,5 @@ function lib:Window(text, preset, closebind)
     end
     return tabhold
 end
-print("Version: 1.2.3")
+print("Version: 1.2.4")
 return lib
